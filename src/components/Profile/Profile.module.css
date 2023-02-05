@@ -1,0 +1,6 @@
+.content {
+  grid-area: c;
+}
+.content img {
+ max-width: 1000px;
+}
