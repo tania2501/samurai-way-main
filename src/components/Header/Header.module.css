@@ -1,7 +1,15 @@
 .header {
   grid-area: h;
-  background-color: blue;
+  background: rgb(63,94,251);
+  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(90,97,228,1) 57%, rgba(70,251,252,1) 100%);
+  font-weight: 700;
+  color:crimson;
 }
 .header img {
   width: 48px;
+  margin: 10px 0px 10px 20px;
+}
+.logo {
+  display: flex;
+  align-items: center;
 }

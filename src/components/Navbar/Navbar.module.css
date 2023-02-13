@@ -1,8 +1,22 @@
 .navbar {
   grid-area: n;
-  background-color:blueviolet;
+  background: rgb(63, 94, 251);
+  background: linear-gradient(
+    287deg,
+    rgba(63, 94, 251, 1) 0%,
+    rgba(252, 70, 107, 1) 100%
+  );
+  padding: 30px;
+}
+.item {
+  margin-bottom: 10px;
+  border-style: groove;
+  text-align: center;
 }
 .item a {
   text-decoration: none;
-  color:darkseagreen
+  color: darkseagreen;
+}
+.item a.activeLink {
+  color: gold;
 }
