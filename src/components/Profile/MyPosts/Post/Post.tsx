@@ -2,14 +2,19 @@ import React from "react";
 import s from "./Post.module.css";
 import ava from "./Photo.png";
 
-const Post = () => {
+type PostType = {
+  message: string
+  like: number
+}
+
+const Post = (props: PostType) => {
   return (
     <div>
       <div className={s.item}>
-        <img src={ava} alt="" />
-        Post 1
+        <img src={ava} />
+        {props.message}
         <div>
-          <span>Like</span>
+          <span>Like: {props.like}</span>
         </div>
       </div>
     </div>
