@@ -1,3 +1,7 @@
 .description {
   padding: 10px;
 }
+.image img{
+  max-width: 1000px;
+  min-height: 600px;
+}

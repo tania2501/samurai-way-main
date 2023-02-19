@@ -1,13 +1,19 @@
 import React from 'react';
 import MyPosts from './MyPosts/MyPosts';
-import c from './Profile.module.css'
 import { ProfileInfo } from './ProfileInfo/ProfileInfo';
+import { PostType } from '../../App';
 
-const Profile = ()=> {
+export type ProfilePropsType ={
+  profilePage: {
+    posts: PostType[]
+  }
+}
+
+const Profile = (props: ProfilePropsType)=> {
   return (
     <div>
       <ProfileInfo/>
-      <MyPosts/>
+      <MyPosts postItem={props.profilePage.posts}/>
     </div>
   )
 }

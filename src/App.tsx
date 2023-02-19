@@ -9,8 +9,32 @@ import { News } from "./components/News/News";
 import Profile from "./components/Profile/Profile";
 import { Setting } from "./components/SettingComponent/SettingComponent";
 
+export type MessageType ={
+  id: string
+  message: string
+}
+export type DialogType ={
+  id: string
+  name: string
+}
+export type PostType ={
+  id: string
+  text: string
+  likesCount: number
+}
+type AppType = {
+  state: {
+    profilePage: {
+      posts: PostType[]
+    }
+    dialogPage: {
+      messages: MessageType[]
+      dialogs: DialogType[]
+    }
+  }
+}
 
-function App() {
+function App(props: AppType) {
   return (
     <BrowserRouter>
       <div className="app-wrapper">
@@ -18,8 +42,8 @@ function App() {
         <Navbar />
         <div className="app-wrapper-content">
           <Routes>
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/dialogs" element={<Dialogs />} />
+            <Route path="/profile" element={<Profile profilePage={props.state.profilePage}/>} />
+            <Route path="/dialogs" element={<Dialogs dialogPage={props.state.dialogPage} />} />
             <Route path="/news" element={<News />} />
             <Route path="/music" element={<Music />} />
             <Route path="/setting" element={<Setting />} />

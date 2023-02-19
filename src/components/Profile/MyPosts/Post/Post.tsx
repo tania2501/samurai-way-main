@@ -5,6 +5,7 @@ import ava from "./Photo.png";
 type PostType = {
   message: string
   like: number
+  key: string
 }
 
 const Post = (props: PostType) => {
