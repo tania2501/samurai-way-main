@@ -5,21 +5,26 @@ import { PostType } from "../../../App";
 
 type PostPropsType = {
   postItem: PostType[]
+  addUser: (text: any)=>void
 }
 
 const MyPosts = (props: PostPropsType) => {
-  // const postsData = [
-  //   {id: 1, text: 'how are you now?', likesCount: 10},
-  //   {id: 1, text: 'happy day', likesCount: 12},
-  //   {id: 1, text: 'are you serious???', likesCount: 14}
-  // ]
-  let postsElement = props.postItem.map(p => <Post message={p.text} like={p.likesCount} key={p.id}/>)
+ 
+  let postsElement = props.postItem.map(p => <Post message={p.text} like={p.likesCount} key={p.id}/>);
+
+  let newText = React.createRef<HTMLTextAreaElement>();
+ 
+  let addPost = () => {
+     let newPost = newText.current?.value
+     props.addUser(newPost)
+  }
+
   return (
     <div className={s.postsBlock}>
       <div>My post</div>
       <div>
-        <div><textarea></textarea></div>
-        <div><button>Add post</button></div>
+        <div><textarea ref={newText}></textarea></div>
+        <div><button onClick={addPost}>Add post</button></div>
       </div>
       <div className={s.posts}>
         {postsElement}

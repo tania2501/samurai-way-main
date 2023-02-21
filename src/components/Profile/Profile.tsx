@@ -6,14 +6,16 @@ import { PostType } from '../../App';
 export type ProfilePropsType ={
   profilePage: {
     posts: PostType[]
+    
   }
+  addUser: (text: string)=>void
 }
 
 const Profile = (props: ProfilePropsType)=> {
   return (
     <div>
       <ProfileInfo/>
-      <MyPosts postItem={props.profilePage.posts}/>
+      <MyPosts postItem={props.profilePage.posts} addUser={props.addUser}/>
     </div>
   )
 }
