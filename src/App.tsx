@@ -32,6 +32,7 @@ type AppType = {
       dialogs: DialogType[]
     }
   }
+  addUser: (text: string)=>void
 }
 
 function App(props: AppType) {
@@ -42,7 +43,7 @@ function App(props: AppType) {
         <Navbar />
         <div className="app-wrapper-content">
           <Routes>
-            <Route path="/profile" element={<Profile profilePage={props.state.profilePage}/>} />
+            <Route path="/profile" element={<Profile profilePage={props.state.profilePage} addUser={props.addUser}/>} />
             <Route path="/dialogs" element={<Dialogs dialogPage={props.state.dialogPage} />} />
             <Route path="/news" element={<News />} />
             <Route path="/music" element={<Music />} />

@@ -1,5 +1,6 @@
 import React from "react";
 import { v1 } from "uuid";
+import { renderedEntireTree } from "../render";
 
 export let state = {
   profilePage: {
@@ -26,3 +27,12 @@ export let state = {
     ],
   },
 };
+export let addUser = (text: string) => {
+  let newPost= {
+    id: v1(),
+    text: text,
+    likesCount: 0
+  }
+  state.profilePage.posts.push(newPost);
+  renderedEntireTree(state);
+}
