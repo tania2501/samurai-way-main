@@ -1,7 +1,10 @@
 import React from "react";
 import { v1 } from "uuid";
-import { renderedEntireTree } from "../render";
+import { StateType } from "..";
 
+let renderedEntireTree = (state: StateType) => {
+  console.log('State changed')
+}
 export let state = {
   profilePage: {
     posts: [
@@ -9,6 +12,7 @@ export let state = {
       { id: v1(), text: "happy day", likesCount: 12 },
       { id: v1(), text: "are you serious???", likesCount: 14 },
     ],
+    newTextValue: ''
   },
   dialogPage: {
     messages: [
@@ -27,12 +31,21 @@ export let state = {
     ],
   },
 };
-export let addUser = (text: string) => {
+export const addUser = () => {
   let newPost= {
     id: v1(),
-    text: text,
+    text: state.profilePage.newTextValue,
     likesCount: 0
   }
   state.profilePage.posts.push(newPost);
+  state.profilePage.newTextValue = '';
   renderedEntireTree(state);
+}
+export const updateText = (text: string) => {
+    let newText = text;
+    state.profilePage.newTextValue = newText;
+    renderedEntireTree(state);
+}
+export const subscribe = (observer: (state: StateType)=>void) => {
+  renderedEntireTree = observer;
 }

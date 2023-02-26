@@ -26,13 +26,15 @@ type AppType = {
   state: {
     profilePage: {
       posts: PostType[]
+      newTextValue: string
     }
     dialogPage: {
       messages: MessageType[]
       dialogs: DialogType[]
     }
   }
-  addUser: (text: string)=>void
+  addUser: ()=>void
+  updateText: (text: string)=>void
 }
 
 function App(props: AppType) {
@@ -43,7 +45,7 @@ function App(props: AppType) {
         <Navbar />
         <div className="app-wrapper-content">
           <Routes>
-            <Route path="/profile" element={<Profile profilePage={props.state.profilePage} addUser={props.addUser}/>} />
+            <Route path="/profile" element={<Profile profilePage={props.state.profilePage} addUser={props.addUser} updateText={props.updateText}/>} />
             <Route path="/dialogs" element={<Dialogs dialogPage={props.state.dialogPage} />} />
             <Route path="/news" element={<News />} />
             <Route path="/music" element={<Music />} />
