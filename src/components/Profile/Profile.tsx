@@ -1,15 +1,15 @@
-import React from 'react';
 import MyPosts from './MyPosts/MyPosts';
 import { ProfileInfo } from './ProfileInfo/ProfileInfo';
 import { PostType } from '../../App';
+import { ActionsTypes } from '../../redux/state';
 
 export type ProfilePropsType ={
   profilePage: {
     posts: PostType[]
     newTextValue: string
   }
-  addUser: ()=>void
-  updateText: (text: string)=>void
+  addUser: (action: ActionsTypes)=>void
+  updateText: (action: ActionsTypes)=>void
 }
 
 const Profile = (props: ProfilePropsType)=> {

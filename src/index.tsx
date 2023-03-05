@@ -1,24 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App, { DialogType, MessageType, PostType } from './App';
-import { addUser, state, subscribe, updateText } from './redux/state';
+import App from './App';
+import {store} from './redux/state';
+import { BrowserRouter } from 'react-router-dom';
 
-export type StateType = {
-  profilePage: {
-    posts: PostType[]
-    newTextValue: string
-  }
-  dialogPage: {
-    messages: MessageType[]
-    dialogs: DialogType[]
-  }
-}
-
-let renderedEntireTree = (state: StateType) => {
+const renderEntireTree = () => {
   ReactDOM.render(
-    <App state={state} addUser={addUser} updateText={updateText}/>,
-  document.getElementById('root'));
-}
-renderedEntireTree(state);
-subscribe(renderedEntireTree);
+    <BrowserRouter>
+     <App store={store}/>
+    </BrowserRouter>,
+    document.getElementById('root'));
+};
+renderEntireTree();
+store.subscribe(renderEntireTree);
+

@@ -1,5 +1,5 @@
-import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import React from 'react';
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import { Dialogs } from "./components/Dialogs/Dialogs";
 import Header from "./components/Header/Header";
@@ -8,6 +8,7 @@ import Navbar from "./components/Navbar/Navbar";
 import { News } from "./components/News/News";
 import Profile from "./components/Profile/Profile";
 import { Setting } from "./components/SettingComponent/SettingComponent";
+import { StoreType } from "./redux/state";
 
 export type MessageType ={
   id: string
@@ -23,37 +24,28 @@ export type PostType ={
   likesCount: number
 }
 type AppType = {
-  state: {
-    profilePage: {
-      posts: PostType[]
-      newTextValue: string
-    }
-    dialogPage: {
-      messages: MessageType[]
-      dialogs: DialogType[]
-    }
-  }
-  addUser: ()=>void
-  updateText: (text: string)=>void
+  store: StoreType
 }
 
 function App(props: AppType) {
+  const state = props.store.getState();
+
   return (
-    <BrowserRouter>
+    
       <div className="app-wrapper">
         <Header />
         <Navbar />
         <div className="app-wrapper-content">
           <Routes>
-            <Route path="/profile" element={<Profile profilePage={props.state.profilePage} addUser={props.addUser} updateText={props.updateText}/>} />
-            <Route path="/dialogs" element={<Dialogs dialogPage={props.state.dialogPage} />} />
+            <Route path="/profile" element={<Profile profilePage={state.profilePage} addUser={props.store.dispatch.bind(props.store)} updateText={props.store.dispatch.bind(props.store)}/>} />
+            <Route path="/dialogs" element={<Dialogs dialogPage={state.dialogPage} addMessage={props.store.dispatch.bind(props.store)} updateMessage={props.store.dispatch.bind(props.store)}/>} />
             <Route path="/news" element={<News />} />
             <Route path="/music" element={<Music />} />
             <Route path="/setting" element={<Setting />} />
           </Routes>
         </div>
       </div>
-    </BrowserRouter>
+
   );
 }
 
