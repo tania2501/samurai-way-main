@@ -4,14 +4,16 @@ import s from './Dialogs.module.css';
 import { DialogMessage } from "./Message/Message";
 import { DialogType } from "../../App";
 import { MessageType } from "../../App";
-import { ActionsTypes, addMessageAC, newMessageAC } from "../../redux/state";
+import { ActionsTypes } from "../../redux/state";
+import { addMessageAC, newMessageAC } from "../../redux/dialog-reducer";
 
+export type DialogsType = {
+  dialogs: DialogType[]
+  messages: MessageType[]
+  newMessage: string
+}
 type DialogsPropsType ={
-  dialogPage: {
-    dialogs: DialogType[]
-    messages: MessageType[]
-    newMessage: string
-  }
+  dialogPage: DialogsType
   addMessage: (action: ActionsTypes)=>void
   updateMessage: (action: ActionsTypes)=>void
 }

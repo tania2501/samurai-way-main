@@ -3,11 +3,12 @@ import { ProfileInfo } from './ProfileInfo/ProfileInfo';
 import { PostType } from '../../App';
 import { ActionsTypes } from '../../redux/state';
 
+export type ProfilePageType = {
+  posts: PostType[]
+  newTextValue: string
+}
 export type ProfilePropsType ={
-  profilePage: {
-    posts: PostType[]
-    newTextValue: string
-  }
+  profilePage: ProfilePageType
   addUser: (action: ActionsTypes)=>void
   updateText: (action: ActionsTypes)=>void
 }

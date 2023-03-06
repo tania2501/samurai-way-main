@@ -1,5 +1,8 @@
 import { v1 } from "uuid";
 import { DialogType, MessageType, PostType } from "../App";
+import { addMessageAC, dialogReducer, newMessageAC } from "./dialog-reducer";
+import { addPostAC, profileReducer, updateTextAC } from "./profile-reducer";
+import { sidebarReducer } from "./sidebar-reducer";
 
 export type StoreType = {
   _state: StateType
@@ -18,31 +21,10 @@ export type StateType = {
     dialogs: DialogType[]
     newMessage: string
   }
+  sidebar: {}
 }
 export type ActionsTypes = ReturnType<typeof addPostAC> | ReturnType<typeof updateTextAC> | ReturnType<typeof addMessageAC> | ReturnType<typeof newMessageAC>
 
-export const addPostAC = () => {
-  return {
-    type: "ADD-POST"
-  } as const
-}
-export const updateTextAC = (text: string) => {
-  return {
-    type: "CHANGE-NEW-TEXT",
-    text: text
-  } as const
-}
-export const addMessageAC = () => {
-  return {
-    type: "ADD-NEW-MESSAGE",
-  } as const
-}
-export const newMessageAC = (text: string) => {
-  return {
-    type: "NEW-MESSAGE-TEXT",
-    text: text
-  } as const
-}
 export const store: StoreType = {
   _state: {
     profilePage: {
@@ -70,6 +52,7 @@ export const store: StoreType = {
       ],
       newMessage: '',
     },
+    sidebar: {},
   },
   getState  () {
     return this._state
@@ -81,26 +64,10 @@ export const store: StoreType = {
     this._onChange = observer;
   },
   dispatch (action) {
-    if (action.type === "ADD-POST") {
-      const newPost: PostType = {
-        id: v1(),
-        text: this._state.profilePage.newTextValue,
-        likesCount: 0
-      }
-      this._state.profilePage.posts.push(newPost);
-      this._state.profilePage.newTextValue = '';
-      this._onChange();
-    } else if (action.type === "CHANGE-NEW-TEXT") {
-      this._state.profilePage.newTextValue = action.text;
-      this._onChange();
-    } else if (action.type === "ADD-NEW-MESSAGE") {
-      const newMessageText = this._state.dialogPage.newMessage;
-      this._state.dialogPage.messages.push({id: v1(), message: newMessageText});
-      this._state.dialogPage.newMessage = '';
-      this._onChange();
-    } else if (action.type === "NEW-MESSAGE-TEXT") {
-      this._state.dialogPage.newMessage = action.text;
-      this._onChange();
-    }
+    this._state.profilePage = profileReducer(this._state.profilePage, action);
+    this._state.dialogPage = dialogReducer(this._state.dialogPage, action);
+    this._state.sidebar = sidebarReducer(this._state.sidebar, action);
+
+    this._onChange();
   }
 }
