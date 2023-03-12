@@ -2,16 +2,27 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import {store} from './redux/state';
 import { BrowserRouter } from 'react-router-dom';
+import { store } from './mainRedux/store-redux';
+import { ProfilePageType } from './components/Profile/Profile';
+import { DialogsType } from './components/Dialogs/Dialogs';
 
-const renderEntireTree = () => {
+export type StateType = {
+  profilePage: ProfilePageType
+  dialogPage: DialogsType
+  sidebar: {}
+}
+
+const renderEntireTree = (state: StateType) => {
   ReactDOM.render(
     <BrowserRouter>
-     <App store={store}/>
+     <App state={state} dispatch={store.dispatch.bind(store)}/>
     </BrowserRouter>,
     document.getElementById('root'));
 };
-renderEntireTree();
-store.subscribe(renderEntireTree);
+renderEntireTree(store.getState());
+store.subscribe(() => {
+  const state = store.getState();
+  renderEntireTree(state)
+});
 

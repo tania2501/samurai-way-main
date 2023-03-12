@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { Dispatch } from 'react';
 import { Route, Routes } from "react-router-dom";
+import { StateType } from '.';
 import "./App.css";
 import { Dialogs } from "./components/Dialogs/Dialogs";
 import Header from "./components/Header/Header";
@@ -8,7 +9,8 @@ import Navbar from "./components/Navbar/Navbar";
 import { News } from "./components/News/News";
 import Profile from "./components/Profile/Profile";
 import { Setting } from "./components/SettingComponent/SettingComponent";
-import { StoreType } from "./redux/state";
+import { ActionsTypes } from './mainRedux/store-redux';
+
 
 export type MessageType ={
   id: string
@@ -24,11 +26,12 @@ export type PostType ={
   likesCount: number
 }
 type AppType = {
-  store: StoreType
+  state: StateType
+  dispatch: Dispatch<ActionsTypes>
 }
 
 function App(props: AppType) {
-  const state = props.store.getState();
+  
 
   return (
     
@@ -37,8 +40,9 @@ function App(props: AppType) {
         <Navbar />
         <div className="app-wrapper-content">
           <Routes>
-            <Route path="/profile" element={<Profile profilePage={state.profilePage} addUser={props.store.dispatch.bind(props.store)} updateText={props.store.dispatch.bind(props.store)}/>} />
-            <Route path="/dialogs" element={<Dialogs dialogPage={state.dialogPage} addMessage={props.store.dispatch.bind(props.store)} updateMessage={props.store.dispatch.bind(props.store)}/>} />
+
+            <Route path="/profile" element={<Profile profilePage={props.state.profilePage} addUser={props.dispatch} updateText={props.dispatch}/>} />
+            <Route path="/dialogs" element={<Dialogs dialogPage={props.state.dialogPage} addMessage={props.dispatch} updateMessage={props.dispatch}/>} />
             <Route path="/news" element={<News />} />
             <Route path="/music" element={<Music />} />
             <Route path="/setting" element={<Setting />} />

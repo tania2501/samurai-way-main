@@ -1,7 +1,9 @@
 import MyPosts from './MyPosts/MyPosts';
 import { ProfileInfo } from './ProfileInfo/ProfileInfo';
 import { PostType } from '../../App';
-import { ActionsTypes } from '../../redux/state';
+import { ActionsTypes } from '../../mainRedux/store-redux';
+
+
 
 export type ProfilePageType = {
   posts: PostType[]

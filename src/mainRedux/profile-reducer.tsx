@@ -1,14 +1,21 @@
-
 import { v1 } from "uuid";
 import { PostType } from "../App";
 import { ProfilePageType } from "../components/Profile/Profile";
-import { ActionsTypes} from "./state";
+import { ActionsTypes } from "./store-redux";
 
 const ADD_POST = "ADD-POST";
 const CHANGE_NEW_TEXT = "CHANGE-NEW-TEXT";
+  let initialState = {
+    posts: [
+      { id: v1(), text: "how are you now?", likesCount: 10 },
+      { id: v1(), text: "happy day", likesCount: 12 },
+      { id: v1(), text: "are you serious???", likesCount: 14 },
+    ],
+    newTextValue: ''
+  }
 
-export const profileReducer = (state: ProfilePageType, action: ActionsTypes) => {
-  
+export const profileReducer = (state: ProfilePageType, action: ActionsTypes): ProfilePageType => {
+  state = initialState;
   switch (action.type) {
     case ADD_POST: 
       const newPost: PostType = {
@@ -20,7 +27,7 @@ export const profileReducer = (state: ProfilePageType, action: ActionsTypes) => 
       state.newTextValue = '';
       return state;
     case CHANGE_NEW_TEXT: 
-      state.newTextValue = action.text;
+    state.newTextValue = action.text;
       return state;
     default:
       return state;
