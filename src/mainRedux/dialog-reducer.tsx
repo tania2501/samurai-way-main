@@ -1,5 +1,5 @@
 import { v1 } from "uuid";
-import { DialogsType } from "../components/Dialogs/Dialogs";
+import { DialogsType } from "../components/Dialogs/DialogsContainer";
 import { ActionsTypes } from "./store-redux";
 
 

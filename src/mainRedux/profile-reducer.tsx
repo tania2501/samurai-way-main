@@ -1,3 +1,4 @@
+
 import { v1 } from "uuid";
 import { PostType } from "../App";
 import { ProfilePageType } from "../components/Profile/Profile";
@@ -13,8 +14,7 @@ const CHANGE_NEW_TEXT = "CHANGE-NEW-TEXT";
     ],
     newTextValue: ''
   }
-
-export const profileReducer = (state: ProfilePageType, action: ActionsTypes): ProfilePageType => {
+export const profileReducer = (state: ProfilePageType, action: ActionsTypes) => {
   state = initialState;
   switch (action.type) {
     case ADD_POST: 

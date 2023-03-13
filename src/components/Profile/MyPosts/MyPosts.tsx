@@ -2,15 +2,13 @@ import React, { ChangeEvent } from "react";
 import s from "./MyPosts.module.css";
 import Post from "./Post/Post";
 import { PostType } from "../../../App";
-import { ActionsTypes } from "../../../mainRedux/store-redux";
-import { addPostAC, updateTextAC } from "../../../mainRedux/profile-reducer";
 
 
 type PostPropsType = {
   postItem: PostType[]
+  updateTextValue: (text: string)=>void
+  addPost: ()=>void
   textValue: string
-  addUser: (action: ActionsTypes)=>void
-  updateText: (action: ActionsTypes)=>void
 }
 
 const MyPosts = (props: PostPropsType) => {
@@ -20,10 +18,11 @@ const MyPosts = (props: PostPropsType) => {
  
  
   const addPost = () => {
-    props.addUser(addPostAC())
+    props.addPost();
   }
   const updateText = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    props.updateText(updateTextAC(e.currentTarget.value))
+    let text = e.currentTarget.value;
+    props.updateTextValue(text);
   }
 
 
