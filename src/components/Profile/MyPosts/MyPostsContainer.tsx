@@ -1,20 +1,27 @@
 import { addPostAC, updateTextAC } from "../../../mainRedux/profile-reducer";
-import { ProfilePropsType } from "../Profile";
+import { StoreContext } from "../../../StoreContext";
 import MyPosts from "./MyPosts";
 
-
-
-
-export const MyPostsContainer = (props: ProfilePropsType) => {
- 
-  const addPost = () => {
-    props.dispatch(addPostAC())
-  }
-  const updateText = (text: string) => {
-    props.dispatch(updateTextAC(text))
-  }
-
+export const MyPostsContainer = () => {
   return (
-    <MyPosts postItem={props.profilePage.posts} addPost={addPost} updateTextValue={updateText} textValue={props.profilePage.newTextValue}/>
+    <StoreContext.Consumer>
+      {(store) => {
+        let state = store?.getState();
+        const addPost = () => {
+          store.dispatch(addPostAC());
+        };
+        const updateText = (text: string) => {
+          store.dispatch(updateTextAC(text));
+        };
+        return (
+          <MyPosts
+            postItem={state.profilePage.posts}
+            addPost={addPost}
+            updateTextValue={updateText}
+            textValue={state.profilePage.newTextValue}
+          />
+        );
+      }}
+    </StoreContext.Consumer>
   );
 };

@@ -1,28 +1,36 @@
 import { DialogType } from "../../App";
 import { MessageType } from "../../App";
 import { addMessageAC, newMessageAC } from "../../mainRedux/dialog-reducer";
-import { ActionsTypes } from "../../mainRedux/store-redux";
+import { StoreContext } from "../../StoreContext";
 import { Dialogs } from "./Dialogs";
 
 export type DialogsType = {
-  dialogs: DialogType[]
-  messages: MessageType[]
-  newMessage: string
-}
-type DialogsPropsType ={
-  dialogPage: DialogsType
-  dispatch: (action: ActionsTypes)=>void
-}
-export const DialogsContainer = (props: DialogsPropsType) => {
+  dialogs: DialogType[];
+  messages: MessageType[];
+  newMessage: string;
+};
 
-  const changeMessage = (text: string) => {
-    props.dispatch(newMessageAC(text))
-  }
-  const addNewMessage = () => {
-    props.dispatch(addMessageAC())
-  }
+export const DialogsContainer = () => {
   return (
-   <Dialogs dialogs={props.dialogPage.dialogs} message={props.dialogPage.messages} changeMessage={changeMessage} addMessage={addNewMessage} value={props.dialogPage.newMessage}/>
+    <StoreContext.Consumer>
+      {(store) => {
+        let state = store.getState();
+        const changeMessage = (text: string) => {
+          store.dispatch(newMessageAC(text));
+        };
+        const addNewMessage = () => {
+          store.dispatch(addMessageAC());
+        };
+        return (
+          <Dialogs
+            dialogs={state.dialogPage.dialogs}
+            message={state.dialogPage.messages}
+            changeMessage={changeMessage}
+            addMessage={addNewMessage}
+            value={state.dialogPage.newMessage}
+          />
+        );
+      }}
+    </StoreContext.Consumer>
   );
-  
-}
+};

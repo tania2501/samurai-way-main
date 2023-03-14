@@ -1,6 +1,5 @@
-import React, { Dispatch } from "react";
+import React from "react";
 import { Route, Routes } from "react-router-dom";
-import { StateType } from ".";
 import "./App.css";
 import { DialogsContainer } from "./components/Dialogs/DialogsContainer";
 import Header from "./components/Header/Header";
@@ -9,7 +8,6 @@ import Navbar from "./components/Navbar/Navbar";
 import { News } from "./components/News/News";
 import Profile from "./components/Profile/Profile";
 import { Setting } from "./components/SettingComponent/SettingComponent";
-import { ActionsTypes } from "./mainRedux/store-redux";
 
 export type MessageType = {
   id: string;
@@ -24,12 +22,8 @@ export type PostType = {
   text: string;
   likesCount: number;
 };
-export type AppType = {
-  state: StateType;
-  dispatch: Dispatch<ActionsTypes>;
-};
 
-function App(props: AppType) {
+function App() {
   return (
     <div className="app-wrapper">
       <Header />
@@ -39,19 +33,13 @@ function App(props: AppType) {
           <Route
             path="/profile"
             element={
-              <Profile
-                profilePage={props.state.profilePage}
-                dispatch={props.dispatch}
-              />
+              <Profile/>
             }
           />
           <Route
             path="/dialogs"
             element={
-              <DialogsContainer
-                dialogPage={props.state.dialogPage}
-                dispatch={props.dispatch}
-              />
+              <DialogsContainer/>
             }
           />
           <Route path="/news" element={<News />} />

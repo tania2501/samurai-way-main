@@ -14,11 +14,11 @@ export type ProfilePropsType ={
   dispatch: (action: ActionsTypes)=>void
 }
 
-const Profile = (props: ProfilePropsType)=> {
+const Profile = ()=> {
   return (
     <div>
       <ProfileInfo/>
-      <MyPostsContainer profilePage={props.profilePage} dispatch={props.dispatch}/>
+      <MyPostsContainer />
     </div>
   )
 }
