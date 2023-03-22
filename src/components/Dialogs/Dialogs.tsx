@@ -5,18 +5,18 @@ import { DialogMessage } from "./Message/Message";
 import { DialogType } from "../../App";
 import { MessageType } from "../../App";
 
-type DialogsPropsType ={
+export type DialogsPropsType ={
   dialogs: DialogType[]
-  message: MessageType[]
+  messages: MessageType[]
   changeMessage: (text: string)=>void
   addMessage: ()=> void
-  value: string
+  newMessage: string
 }
 export const Dialogs = (props: DialogsPropsType) => {
 
   let dialogsElement = props.dialogs.map(dialog => <DialogItem name={dialog.name} id={dialog.id} key={dialog.id}/>);
 
-  let messagesElement = props.message.map(message => <DialogMessage message={message.message} id={message.id} key={message.id}/>);
+  let messagesElement = props.messages.map(message => <DialogMessage message={message.message} id={message.id} key={message.id}/>);
 
   const changeMessage = (e: ChangeEvent<HTMLTextAreaElement>) => {
     props.changeMessage(e.currentTarget.value)
@@ -31,7 +31,7 @@ export const Dialogs = (props: DialogsPropsType) => {
       </div>
       <div className={s.messages}>
         {messagesElement} 
-        <div><textarea value={props.value} onChange={changeMessage}></textarea></div>
+        <div><textarea value={props.newMessage} onChange={changeMessage}></textarea></div>
         <div><button onClick={addNewMessage}>Send</button></div>    
       </div>
     </div>

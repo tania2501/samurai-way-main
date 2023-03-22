@@ -5,15 +5,15 @@ import { PostType } from "../../../App";
 
 
 type PostPropsType = {
-  postItem: PostType[]
+  posts: PostType[]
   updateTextValue: (text: string)=>void
   addPost: ()=>void
-  textValue: string
+  newTextValue: string
 }
 
 const MyPosts = (props: PostPropsType) => {
  
-  const postsElement = props.postItem.map(p => <Post message={p.text} like={p.likesCount} key={p.id}/>);
+  const postsElement = props.posts.map(p => <Post message={p.text} like={p.likesCount} key={p.id}/>);
 
  
  
@@ -30,7 +30,7 @@ const MyPosts = (props: PostPropsType) => {
     <div className={s.postsBlock}>
       <div>My post</div>
       <div>
-        <div><textarea value={props.textValue} onChange={updateText}/></div>
+        <div><textarea value={props.newTextValue} onChange={updateText}/></div>
         <div><button onClick={addPost}>Add post</button></div>
       </div>
       <div className={s.posts}>

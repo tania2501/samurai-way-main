@@ -1,3 +1,4 @@
+import { Reducer } from "react";
 import { v1 } from "uuid";
 import { DialogsType } from "../components/Dialogs/DialogsContainer";
 import { ActionsTypes } from "./store-redux";
@@ -24,8 +25,8 @@ const initialState =  {
   newMessage: '',
 }
 
-export const dialogReducer = (state: DialogsType, action: ActionsTypes): DialogsType => {
-  state = initialState;
+export const dialogReducer: Reducer<DialogsType, ActionsTypes> = (state = {...initialState}, action): DialogsType => {
+  
   switch (action.type) {
     case ADD_NEW_MESSAGE:
       const newMessageText = state.newMessage;
