@@ -6,7 +6,7 @@ export const ProfileInfo = () => {
   return (
     <div>
       <div className={s.image}>
-        <img src={fon}/>
+        <img src={fon} alt='#'/>
       </div>
       <div className={s.description}>ava + description</div>
     </div>

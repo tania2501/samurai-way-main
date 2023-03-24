@@ -18,5 +18,5 @@ const renderEntireTree = () => {
     document.getElementById('root'));
 };
 renderEntireTree();
-store.subscribe(renderEntireTree);
+
 

@@ -12,7 +12,7 @@ const Post = (props: PostType) => {
   return (
     <div>
       <div className={s.item}>
-        <img src={ava} />
+        <img src={ava} alt={'#'}/>
         {props.message}
         <div>
           <span>Like: {props.like}</span>
