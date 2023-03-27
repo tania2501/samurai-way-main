@@ -12,13 +12,7 @@ export type MainUserType = {
   users: UserType[]
 }
 const initialState = {
-  users: [
-    { id: v1(), avatar: ava, followed: true, name: 'Alex', status: 'hello', location: {country: 'Slovakia', city: 'Bratislava'} },
-    { id: v1(), avatar: ava, followed: true, name: 'Artem', status: 'hi', location: {country: 'Ukraine', city: 'Lugansk'} },
-    { id: v1(), avatar: ava, followed: false, name: 'Vasyl', status: ':=)', location: {country: 'Belarus', city: 'Minsk'} },
-    { id: v1(), avatar: ava, followed: false, name: 'Vika', status: 'im angry', location: {country: 'Rostov', city: 'Russia'} },
-  ],
- 
+  users: []
 };
 
 export const usersReducer: Reducer<MainUserType, ActionsTypes> = ( state = { ...initialState }, action: ActionsTypes): MainUserType => {
