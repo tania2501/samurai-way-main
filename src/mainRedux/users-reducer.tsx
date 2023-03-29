@@ -1,8 +1,7 @@
 import { Reducer } from "react";
-import { v1 } from "uuid";
+import { UserType } from "../components/users/UsersC";
 import { ActionsTypes } from "./store-redux";
-import ava from './Photo.png'
-import { UserType } from "../components/users/Users";
+
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
@@ -43,13 +42,13 @@ export const usersReducer: Reducer<MainUserType, ActionsTypes> = ( state = { ...
       return state;
   }
 };
-export const followAC = (userId: string) => {
+export const followAC = (userId: number) => {
   return {
     type: FOLLOW,
     userId: userId,
   } as const;
 };
-export const unfollowAC = (userId: string) => {
+export const unfollowAC = (userId: number) => {
   return {
     type: UNFOLLOW,
     userId: userId,

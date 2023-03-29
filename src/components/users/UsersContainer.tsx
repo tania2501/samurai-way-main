@@ -2,7 +2,8 @@
 import { connect } from "react-redux";
 import { AppDispatch, StateType } from "../../mainRedux/store-redux";
 import { followAC, setUsersAC, unfollowAC } from "../../mainRedux/users-reducer";
-import { Users, UserType } from "./Users";
+import {  UserType } from "./UsersC";
+import { Users } from "./UsersC";
 
 
 let mapStateToProps = (state: StateType) => {
@@ -12,10 +13,10 @@ let mapStateToProps = (state: StateType) => {
 }
 let mapDispatchToProps = (dispatch: AppDispatch) => {
   return {
-    follow: (userId: string) => {
+    follow: (userId: number) => {
       dispatch(followAC(userId))
     },
-    unfollow: (userId: string) => {
+    unfollow: (userId: number) => {
       dispatch(unfollowAC(userId))
     },
     setUsers: (users: UserType[]) => {
@@ -23,4 +24,5 @@ let mapDispatchToProps = (dispatch: AppDispatch) => {
     }
   }
 }
+
 export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(Users)

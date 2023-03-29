@@ -8,7 +8,6 @@ import Navbar from "./components/Navbar/Navbar";
 import { News } from "./components/News/News";
 import Profile from "./components/Profile/Profile";
 import { Setting } from "./components/SettingComponent/SettingComponent";
-import { Users } from "./components/users/Users";
 import { UsersContainer } from "./components/users/UsersContainer";
 
 export type MessageType = {
