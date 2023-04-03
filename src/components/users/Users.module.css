@@ -2,3 +2,6 @@
   width: 50px;
   border-radius: 30px;
 }
+.selected {
+  font-weight: bold;
+}

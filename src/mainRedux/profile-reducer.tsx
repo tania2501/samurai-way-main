@@ -1,8 +1,8 @@
-import { Reducer } from "react";
 import { v1 } from "uuid";
 import { PostType } from "../App";
 import { ProfilePageType } from "../components/Profile/Profile";
 import { ActionsTypes } from "./store-redux";
+import { Reducer } from "redux";
 
 const ADD_POST = "ADD-POST";
 const CHANGE_NEW_TEXT = "CHANGE-NEW-TEXT";

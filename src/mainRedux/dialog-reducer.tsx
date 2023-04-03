@@ -1,7 +1,7 @@
-import { Reducer } from "react";
 import { v1 } from "uuid";
 import { DialogsType } from "../components/Dialogs/DialogsContainer";
 import { ActionsTypes } from "./store-redux";
+import { Reducer } from "redux";
 
 const ADD_NEW_MESSAGE = "ADD-NEW-MESSAGE";
 const NEW_MESSAGE_TEXT = "NEW-MESSAGE-TEXT";
