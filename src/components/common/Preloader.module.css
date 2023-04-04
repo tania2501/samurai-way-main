@@ -1,0 +1,33 @@
+.loader {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 3px solid white;
+  background:  conic-gradient(from 90deg at 50% 50%, rgba(255, 255, 255, 0) 0deg, #512DE4 360deg);
+  box-shadow: 0px 0px 100px -50px black;
+  animation: animate 1s linear infinite;
+  margin: 0 auto;
+}
+
+.loader::before {
+  position: absolute;
+  content: "";
+  background: aqua;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  border-radius: 10rem;
+  border: 3px solid white;
+}
+
+@keyframes animate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

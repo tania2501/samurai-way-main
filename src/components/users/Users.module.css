@@ -5,3 +5,7 @@
 .selected {
   font-weight: bold;
 }
+
+.offLoader {
+  display: none;
+}

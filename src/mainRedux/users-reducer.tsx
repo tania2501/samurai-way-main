@@ -1,5 +1,5 @@
 import { Reducer } from "redux";
-import { UserType } from "../components/users/UsersC";
+import { UserType } from "../components/users/Users";
 import { ActionsTypes } from "./store-redux";
 
 
@@ -7,19 +7,22 @@ const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET-USERS';
 const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
-const SET_TOTAL_COUNT = 'SET-TOTAL-COUNT'
+const SET_TOTAL_COUNT = 'SET-TOTAL-COUNT';
+const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING'
 
 export type MainUserType = {
   users: UserType[]
   pageSize: number
   totalUsersCount: number
   currentPage: number
+  isFetching: boolean
 }
 const initialState = {
   users: [],
   pageSize: 10,
   totalUsersCount: 0,
-  currentPage: 1
+  currentPage: 1,
+  isFetching: false
 };
 
 export const usersReducer: Reducer<MainUserType, ActionsTypes> = ( state = { ...initialState }, action: ActionsTypes): MainUserType => {
@@ -50,6 +53,8 @@ export const usersReducer: Reducer<MainUserType, ActionsTypes> = ( state = { ...
        return {...state, currentPage: action.page};
     case SET_TOTAL_COUNT:
        return {...state, totalUsersCount: action.users};
+    case TOGGLE_IS_FETCHING:
+      return {...state, isFetching: action.isFetching};
     default:
       return state;
   }
@@ -77,5 +82,10 @@ export const setCurrentPageAC = (page: number) => {
 export const setTotalCountAC = (users: number) => {
   return {
     type: SET_TOTAL_COUNT, users
+  } as const;
+};
+export const toggleIsFetchingAC = (isFetching: boolean) => {
+  return {
+    type: TOGGLE_IS_FETCHING, isFetching
   } as const;
 };
