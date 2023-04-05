@@ -6,6 +6,6 @@ type PreloaderType = {
 }
 export const Preloader = (props: PreloaderType) => {
   return (
-    <div className={props.isFetching ? s.loader : ""}></div>
+    <div className={props.isFetching ? s.loader : ''}></div>
   )
 }

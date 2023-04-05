@@ -47,12 +47,12 @@ export const dialogReducer: Reducer<DialogsType, ActionsTypes> = (
       return state;
   }
 };
-export const addMessageAC = () => {
+export const addMessage = () => {
   return {
     type: ADD_NEW_MESSAGE,
   } as const;
 };
-export const newMessageAC = (text: string) => {
+export const changeMessage = (text: string) => {
   return {
     type: NEW_MESSAGE_TEXT,
     text: text,

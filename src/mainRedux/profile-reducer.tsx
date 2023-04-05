@@ -33,12 +33,12 @@ export const profileReducer: Reducer<ProfilePageType, ActionsTypes> = (
       return state;
   }
 };
-export const addPostAC = () => {
+export const addPost = () => {
   return {
     type: ADD_POST,
   } as const;
 };
-export const updateTextAC = (text: string) => {
+export const updateTextValue = (text: string) => {
   return {
     type: CHANGE_NEW_TEXT,
     text: text,

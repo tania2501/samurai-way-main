@@ -37,8 +37,8 @@ export const Users = (props: UsersType) => {
   let slicedPages = pages.slice(curPF, curPL);
   return (
     <>
-      <Preloader isFetching={props.isFetching}/>
-      <div className={props.isFetching ? s.offLoader : ""}>
+    <div className={props.isFetching ? s.mainContent : s.offLoader}><Preloader isFetching={props.isFetching}/></div>
+      <div className={props.isFetching ? s.offLoader : ''}>
         <div>
           {" "}
           {slicedPages.map((p) => {

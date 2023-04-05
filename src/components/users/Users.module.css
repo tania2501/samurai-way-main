@@ -9,3 +9,6 @@
 .offLoader {
   display: none;
 }
+.mainContent {
+  height: 100vh;
+}
