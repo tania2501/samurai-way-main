@@ -1,6 +1,19 @@
 .description {
   padding: 10px;
+  background: url("./fon.jpg") no-repeat top center;
+  color: white;
+  font-weight: bold;
+  display: flex;
 }
-.image img{
-  max-width: 1000px;
+.description img {
+  border-radius: 10%;
+}
+.info {
+  margin-top: auto;
+  text-shadow: 0 0 20px #160000;
+  font-size: 20px;
+  margin-left: 10px;
+}
+.social img {
+  width: 30px;
 }

@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import ava from "../../assets/img/users.png";
 import { Preloader } from "../common/Preloader";
 import s from "./Users.module.css";
@@ -58,7 +59,7 @@ export const Users = (props: UsersType) => {
             <div key={u.id}>
               <span>
                 <div className={s.avatar}>
-                  <img src={u.photos.small ? u.photos.small : ava} alt="" />
+                  <NavLink to={'/Profile'}><img src={u.photos.small ? u.photos.small : ava} alt="" /></NavLink>
                 </div>
                 <div>
                   {u.followed ? (

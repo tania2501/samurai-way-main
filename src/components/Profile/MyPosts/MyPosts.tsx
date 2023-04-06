@@ -3,7 +3,6 @@ import s from "./MyPosts.module.css";
 import Post from "./Post/Post";
 import { PostType } from "../../../App";
 
-
 type PostPropsType = {
   posts: PostType[]
   updateTextValue: (text: string)=>void
@@ -12,11 +11,7 @@ type PostPropsType = {
 }
 
 const MyPosts = (props: PostPropsType) => {
- 
   const postsElement = props.posts.map(p => <Post message={p.text} like={p.likesCount} key={p.id}/>);
-
- 
- 
   const addPost = () => {
     props.addPost();
   }
@@ -24,8 +19,6 @@ const MyPosts = (props: PostPropsType) => {
     let text = e.currentTarget.value;
     props.updateTextValue(text);
   }
-
-
   return (
     <div className={s.postsBlock}>
       <div>My post</div>

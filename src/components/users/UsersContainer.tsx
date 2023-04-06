@@ -1,4 +1,3 @@
-
 import { connect } from "react-redux";
 import { StateType } from "../../mainRedux/store-redux";
 import { follow, setCurrentPage, setTotalCount, setUsers, toggleIsFetching, unfollow } from "../../mainRedux/users-reducer";

@@ -3,9 +3,11 @@ import { PostType } from "../App";
 import { ProfilePageType } from "../components/Profile/Profile";
 import { ActionsTypes } from "./store-redux";
 import { Reducer } from "redux";
+import { ProfileUserType } from "../components/Profile/ProfileContainer";
 
-const ADD_POST = "ADD-POST";
-const CHANGE_NEW_TEXT = "CHANGE-NEW-TEXT";
+const ADD_POST = 'ADD-POST';
+const CHANGE_NEW_TEXT = 'CHANGE-NEW-TEXT';
+const SET_USER_PROFILE = 'SET-USER-PROFILE'
 let initialState = {
   posts: [
     { id: v1(), text: "how are you now?", likesCount: 10 },
@@ -13,6 +15,7 @@ let initialState = {
     { id: v1(), text: "are you serious???", likesCount: 14 },
   ],
   newTextValue: "",
+  profile: {} as ProfileUserType
 };
 export const profileReducer: Reducer<ProfilePageType, ActionsTypes> = (
   state = { ...initialState },
@@ -29,6 +32,8 @@ export const profileReducer: Reducer<ProfilePageType, ActionsTypes> = (
 
     case CHANGE_NEW_TEXT:
       return {...state, newTextValue: action.text}
+    case SET_USER_PROFILE:
+        return {...state, profile: action.profile}
     default:
       return state;
   }
@@ -40,7 +45,12 @@ export const addPost = () => {
 };
 export const updateTextValue = (text: string) => {
   return {
-    type: CHANGE_NEW_TEXT,
-    text: text,
+    type: CHANGE_NEW_TEXT, text,
+  } as const;
+};
+export const setUserProfile = (profile: ProfileUserType) => {
+  return {
+    type: SET_USER_PROFILE,
+    profile
   } as const;
 };
