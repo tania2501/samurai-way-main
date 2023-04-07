@@ -6,7 +6,6 @@ import Header from "./components/Header/Header";
 import { Music } from "./components/Music/Music";
 import Navbar from "./components/Navbar/Navbar";
 import { News } from "./components/News/News";
-import Profile from "./components/Profile/Profile";
 import { Setting } from "./components/SettingComponent/SettingComponent";
 import { UsersContainer } from "./components/users/UsersContainer";
 import { ProfileContainer } from "./components/Profile/ProfileContainer";
@@ -32,7 +31,10 @@ function App() {
       <Navbar />
       <div className="app-wrapper-content">
         <Routes>
-          <Route path="/profile" element={<ProfileContainer/>}/>
+          <Route path="/profile" element={<ProfileContainer/>}>
+            
+            <Route path=":userId" element={<ProfileContainer/>}/>
+          </Route>
           <Route path="/dialogs" element={<DialogsContainer/>}/>
           <Route path="/users" element={<UsersContainer/>} />
           <Route path="/news" element={<News />} />
