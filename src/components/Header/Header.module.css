@@ -4,6 +4,9 @@
   background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(90,97,228,1) 57%, rgba(70,251,252,1) 100%);
   font-weight: 700;
   color:crimson;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .header img {
   width: 48px;
@@ -12,4 +15,9 @@
 .logo {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+}
+.loginBlock a {
+  color: crimson;
+  margin-right: 20px;
 }

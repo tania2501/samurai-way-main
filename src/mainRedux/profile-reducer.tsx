@@ -45,7 +45,7 @@ export const addPost = () => {
 };
 export const updateTextValue = (text: string) => {
   return {
-    type: CHANGE_NEW_TEXT, text,
+    type: CHANGE_NEW_TEXT, text
   } as const;
 };
 export const setUserProfile = (profile: ProfileUserType) => {

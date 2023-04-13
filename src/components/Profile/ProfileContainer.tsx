@@ -6,6 +6,7 @@ import axios from "axios";
 import { setUserProfile } from "../../mainRedux/profile-reducer";
 import { WithRouterProps, withRouter } from "./WithRouter";
 
+
 export type ContactsType = {
   facebook: string;
   website: string | null;
@@ -40,7 +41,10 @@ type ProfileAPItype = WithRouterProps & OwnProfileAPItype
 
 class ProfileAPI extends Component<ProfileAPItype> {
   componentDidMount() {
-    let userId = this.props.params.userId
+    let userId = Number(this.props.params.userId)
+    if (!userId) {
+      userId = 28525
+    }
     axios
       .get('https://social-network.samuraijs.com/api/1.0/profile/' + userId)
       .then((response) => {
