@@ -2,9 +2,9 @@ import { connect } from "react-redux";
 import { Component } from "react";
 import { StateType } from "../../mainRedux/store-redux";
 import Profile from "./Profile";
-import axios from "axios";
 import { setUserProfile } from "../../mainRedux/profile-reducer";
 import { WithRouterProps, withRouter } from "./WithRouter";
+import { profileAPI } from "../../dal/api";
 
 
 export type ContactsType = {
@@ -45,10 +45,9 @@ class ProfileAPI extends Component<ProfileAPItype> {
     if (!userId) {
       userId = 28525
     }
-    axios
-      .get('https://social-network.samuraijs.com/api/1.0/profile/' + userId)
-      .then((response) => {
-        this.props.setUserProfile(response.data);
+    profileAPI.getProfile(userId)
+      .then((data) => {
+        this.props.setUserProfile(data);
       });
   }
   render() {

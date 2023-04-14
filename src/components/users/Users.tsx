@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import ava from "../../assets/img/users.png";
 import { Preloader } from "../common/Preloader";
 import s from "./Users.module.css";
+import { profileAPIdel, profileAPIpost} from "../../dal/api";
 
 export type UserType = {
   name: string;
@@ -23,6 +24,8 @@ export type UsersType = {
   unfollow: (userId: number) => void;
   onChange: (page: number) => void;
   isFetching: boolean;
+  toggleIsFollowing: (isFollowed: boolean, id: number) => void
+  isFollowed: Array<number>
 };
 
 export const Users = (props: UsersType) => {
@@ -33,13 +36,15 @@ export const Users = (props: UsersType) => {
   }
 
   let curP = props.currentPage;
-  let curPF = curP - 5 < 0 ? 0 : curP - 5;
-  let curPL = curP + 5;
+  let curPF = curP - 3 < 0 ? 0 : curP - 3;
+  let curPL = curP + 3;
   let slicedPages = pages.slice(curPF, curPL);
   return (
     <>
-    <div className={props.isFetching ? s.mainContent : s.offLoader}><Preloader isFetching={props.isFetching}/></div>
-      <div className={props.isFetching ? s.offLoader : ''}>
+      <div className={props.isFetching ? s.mainContent : s.offLoader}>
+        <Preloader isFetching={props.isFetching} />
+      </div>
+      <div className={props.isFetching ? s.offLoader : ""}>
         <div>
           {" "}
           {slicedPages.map((p) => {
@@ -59,15 +64,39 @@ export const Users = (props: UsersType) => {
             <div key={u.id}>
               <span>
                 <div className={s.avatar}>
-                  <NavLink to={'/profile/' + u.id}><img src={u.photos.small ? u.photos.small : ava} alt="" /></NavLink>
+                  <NavLink to={"/profile/" + u.id}>
+                    <img src={u.photos.small ? u.photos.small : ava} alt="" />
+                  </NavLink>
                 </div>
                 <div>
                   {u.followed ? (
-                    <button onClick={() => props.unfollow(u.id)}>
+                    <button disabled={props.isFollowed.some( id => id === u.id)}
+                      onClick={() => {
+                        props.toggleIsFollowing(true, u.id)
+                        profileAPIdel.unFollow(u.id).then((data) => {
+                          if (data.resultCode === 0) {
+                            props.unfollow(u.id);
+                          }
+                          props.toggleIsFollowing(false, u.id)
+                        });
+                      }}
+                    >
                       Followed
                     </button>
                   ) : (
-                    <button onClick={() => props.follow(u.id)}>Unfollow</button>
+                    <button disabled={props.isFollowed.some(id => id === u.id)}
+                      onClick={() => {
+                        props.toggleIsFollowing(true, u.id)
+                        profileAPIpost.getFollow(u.id).then((data) => {
+                          if (data.resultCode === 0) {
+                            props.follow(u.id);
+                          }
+                          props.toggleIsFollowing(false, u.id)
+                        });
+                      }}
+                    >
+                      Unfollow
+                    </button>
                   )}
                 </div>
               </span>
