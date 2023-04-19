@@ -1,8 +1,7 @@
 import { ProfileInfo } from './ProfileInfo/ProfileInfo';
 import { PostType } from '../../App';
-import { ActionsTypes } from '../../mainRedux/store-redux';
 import { MyPostsContainer } from './MyPosts/MyPostsContainer';
-import { OwnProfileAPItype, ProfileUserType } from './ProfileContainer';
+import { ProfileUserType } from './ProfileContainer';
 
 
 
@@ -12,11 +11,10 @@ export type ProfilePageType = {
   profile: ProfileUserType
 }
 export type ProfilePropsType ={
-  profilePage: ProfilePageType
-  dispatch: (action: ActionsTypes)=>void
+  profile: ProfileUserType
 }
 
-const Profile = (props: OwnProfileAPItype)=> {
+const Profile = (props: ProfilePropsType)=> {
   return (
     <div>
       <ProfileInfo profile={props.profile}/>

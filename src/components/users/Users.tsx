@@ -2,7 +2,6 @@ import { NavLink } from "react-router-dom";
 import ava from "../../assets/img/users.png";
 import { Preloader } from "../common/Preloader";
 import s from "./Users.module.css";
-import { profileAPIdel, profileAPIpost} from "../../dal/api";
 
 export type UserType = {
   name: string;
@@ -20,12 +19,11 @@ export type UsersType = {
   pageSize: number;
   totalUsersCount: number;
   currentPage: number;
-  follow: (userId: number) => void;
-  unfollow: (userId: number) => void;
   onChange: (page: number) => void;
   isFetching: boolean;
-  toggleIsFollowing: (isFollowed: boolean, id: number) => void
   isFollowed: Array<number>
+  followUser: (id: number)=>void
+  unfollowUser: (id: number)=>void
 };
 
 export const Users = (props: UsersType) => {
@@ -72,13 +70,7 @@ export const Users = (props: UsersType) => {
                   {u.followed ? (
                     <button disabled={props.isFollowed.some( id => id === u.id)}
                       onClick={() => {
-                        props.toggleIsFollowing(true, u.id)
-                        profileAPIdel.unFollow(u.id).then((data) => {
-                          if (data.resultCode === 0) {
-                            props.unfollow(u.id);
-                          }
-                          props.toggleIsFollowing(false, u.id)
-                        });
+                        props.unfollowUser(u.id)
                       }}
                     >
                       Followed
@@ -86,13 +78,7 @@ export const Users = (props: UsersType) => {
                   ) : (
                     <button disabled={props.isFollowed.some(id => id === u.id)}
                       onClick={() => {
-                        props.toggleIsFollowing(true, u.id)
-                        profileAPIpost.getFollow(u.id).then((data) => {
-                          if (data.resultCode === 0) {
-                            props.follow(u.id);
-                          }
-                          props.toggleIsFollowing(false, u.id)
-                        });
+                        props.followUser(u.id)
                       }}
                     >
                       Unfollow

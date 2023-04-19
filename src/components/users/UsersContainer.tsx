@@ -1,18 +1,18 @@
 import { connect } from "react-redux";
 import { StateType } from "../../mainRedux/store-redux";
 import {
+  changeUsersPage,
   follow,
+  followUser,
+  getUsers,
   setCurrentPage,
-  setTotalCount,
-  setUsers,
-  toggleIsFetching,
   toggleIsFollowing,
+  unFollowUser,
   unfollow,
 } from "../../mainRedux/users-reducer";
 import { UserType } from "./Users";
 import React, { Component } from "react";
 import { Users } from "./Users";
-import { usersAPI, usersAPIpage } from "../../dal/api";
 
 
 type UsersAPIType = {
@@ -22,32 +22,23 @@ type UsersAPIType = {
   currentPage: number;
   follow: (userId: number) => void;
   unfollow: (userId: number) => void;
-  setUsers: (users: UserType[]) => void;
   setCurrentPage: (page: number) => void;
-  setTotalCount: (users: number) => void;
-  toggleIsFetching: (isFetching: boolean) => void;
   isFetching: boolean;
   toggleIsFollowing: (isFollowed: boolean, id: number) => void
   isFollowed: Array<number>
+  getUsers: (setCurrentPage: (page: number) => void, pageSize: number) => void
+  changeUsersPage: (page: number, pageSiaze: number)=>void
+  followUser: (id: number)=>void
+  unFollowUser: (id: number) => void
 };
 
 class UsersAPI extends Component<UsersAPIType> {
   componentDidMount(): void {
-    this.props.toggleIsFetching(true);
-    usersAPI.getUsers(this.props.setCurrentPage, this.props.pageSize).then((data) => {
-      this.props.setUsers(data.items);
-      this.props.setTotalCount(data.totalCount);
-      this.props.toggleIsFetching(false);
-    });
+    this.props.getUsers(this.props.setCurrentPage, this.props.pageSize)
   }
 
   onChangePage = (page: number) => {
-    this.props.setCurrentPage(page);
-    this.props.toggleIsFetching(true);
-    usersAPIpage.onChangeUsersPage(page, this.props.pageSize).then((data) => {
-      this.props.setUsers(data.items);
-      this.props.toggleIsFetching(false);
-    });
+    this.props.changeUsersPage(page, this.props.pageSize)
   };
   render() {
     return (
@@ -56,12 +47,11 @@ class UsersAPI extends Component<UsersAPIType> {
         pageSize={this.props.pageSize}
         totalUsersCount={this.props.totalUsersCount}
         currentPage={this.props.currentPage}
-        follow={this.props.follow}
-        unfollow={this.props.unfollow}
         onChange={this.onChangePage}
         isFetching={this.props.isFetching}
         isFollowed={this.props.isFollowed}
-        toggleIsFollowing={this.props.toggleIsFollowing}
+        followUser={this.props.followUser}
+        unfollowUser={this.props.unFollowUser}
       />
     );
   }
@@ -78,12 +68,4 @@ let mapStateToProps = (state: StateType) => {
   };
 };
 
-export const UsersContainer = connect(mapStateToProps, {
-  follow,
-  unfollow,
-  setUsers,
-  setCurrentPage,
-  setTotalCount,
-  toggleIsFetching,
-  toggleIsFollowing
-})(UsersAPI);
+export const UsersContainer = connect(mapStateToProps, { follow, unfollow, setCurrentPage, toggleIsFollowing, getUsers, changeUsersPage, followUser, unFollowUser })(UsersAPI);

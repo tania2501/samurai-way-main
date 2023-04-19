@@ -1,6 +1,8 @@
 import { Reducer } from "redux";
 import { UserType } from "../components/users/Users";
-import { ActionsTypes } from "./store-redux";
+import { ActionsTypes, StateType } from "./store-redux";
+import { ThunkAction } from "redux-thunk";
+import { usersAPI } from "../dal/api";
 
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
@@ -109,3 +111,48 @@ export const toggleIsFollowing = (isFollowed: boolean, userId: number) => {
     userId
   } as const;
 };
+export const getUsers = (setCurrentPage: (page: number) => void, pageSize: number): ThunkAction<Promise<void>, StateType, unknown, ActionsTypes> => {
+  return async (dispatch, getState) => {
+    dispatch(toggleIsFetching(true));
+    usersAPI
+      .getUsers(setCurrentPage, pageSize)
+      .then((data) => {
+        dispatch(setUsers(data.items));
+        dispatch(setTotalCount(data.totalCount));
+        dispatch(toggleIsFetching(false));
+      });
+  };
+};
+export const changeUsersPage = (page: number, pageSize: number): ThunkAction<Promise<void>, StateType, unknown, ActionsTypes> => {
+  return async (dispatch) => {
+    dispatch(setCurrentPage(page));
+    dispatch(toggleIsFetching(true));
+    usersAPI.onChangeUsersPage(page, pageSize).then((data) => {
+      dispatch(setUsers(data.items));
+      dispatch(toggleIsFetching(false));
+    });
+  }
+};
+export const followUser = (id: number): ThunkAction<Promise<void>, StateType, unknown, ActionsTypes> => {
+  return async (dispatch) => {
+    dispatch(toggleIsFollowing(true, id))
+    usersAPI.getFollow(id).then((data) => {
+      if (data.resultCode === 0) {
+        dispatch(follow(id));
+      }
+      dispatch(toggleIsFollowing(false, id))
+    });
+  }
+}
+export const unFollowUser = (id: number): ThunkAction<Promise<void>, StateType, unknown, ActionsTypes> => {
+  return async (dispatch) => {
+    dispatch(toggleIsFollowing(true, id))
+    usersAPI.unFollow(id).then((data) => {
+      if (data.resultCode === 0) {
+        dispatch(unfollow(id));
+      }
+      dispatch(toggleIsFollowing(false, id))
+    });
+  }
+}
+

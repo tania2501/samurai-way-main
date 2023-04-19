@@ -1,9 +1,11 @@
 import { v1 } from "uuid";
 import { PostType } from "../App";
 import { ProfilePageType } from "../components/Profile/Profile";
-import { ActionsTypes } from "./store-redux";
+import { ActionsTypes, StateType } from "./store-redux";
 import { Reducer } from "redux";
 import { ProfileUserType } from "../components/Profile/ProfileContainer";
+import { ThunkAction } from "redux-thunk";
+import { usersAPI } from "../dal/api";
 
 const ADD_POST = 'ADD-POST';
 const CHANGE_NEW_TEXT = 'CHANGE-NEW-TEXT';
@@ -54,3 +56,11 @@ export const setUserProfile = (profile: ProfileUserType) => {
     profile
   } as const;
 };
+
+export const getProfile = (id: number): ThunkAction<Promise<void>, StateType, unknown, ActionsTypes> => {
+  return async (dispatch) => {
+    usersAPI.getProfile(id).then((data) => {
+      dispatch(setUserProfile(data));
+    });
+  }
+}

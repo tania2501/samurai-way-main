@@ -1,5 +1,7 @@
 import { Reducer } from "redux"
-import { ActionsTypes } from "./store-redux"
+import { ActionsTypes, StateType } from "./store-redux"
+import { ThunkAction } from "redux-thunk"
+import { usersAPI } from "../dal/api"
 
 const SET_USER_DATA = 'SET_USER_DATA '
 
@@ -9,13 +11,7 @@ export type AutorizationType = {
   email: string
   isAuth: boolean
 }
-const initialState = {
-  // id: 0,
-  // login: '',
-  // email: '',
-  // isAuth: false
-} as AutorizationType
-
+const initialState = {} as AutorizationType
 
 export const loginReducer: Reducer<AutorizationType, ActionsTypes> = (
   state = { ...initialState },
@@ -31,4 +27,13 @@ export const loginReducer: Reducer<AutorizationType, ActionsTypes> = (
 
 export const setAuthUserData = (data: AutorizationType) => {
   return {type: SET_USER_DATA, data} as const;
+}
+export const authUser = (): ThunkAction<Promise<void>, StateType, unknown, ActionsTypes> => {
+  return async (dispatch) => {
+    usersAPI.auth().then((data) => {
+      if (data.resultCode === 0) {
+        dispatch(setAuthUserData(data.data));
+      }
+    });
+  }
 }

@@ -2,9 +2,8 @@ import { connect } from "react-redux";
 import { Component } from "react";
 import { StateType } from "../../mainRedux/store-redux";
 import Profile from "./Profile";
-import { setUserProfile } from "../../mainRedux/profile-reducer";
+import { getProfile} from "../../mainRedux/profile-reducer";
 import { WithRouterProps, withRouter } from "./WithRouter";
-import { profileAPI } from "../../dal/api";
 
 
 export type ContactsType = {
@@ -35,7 +34,7 @@ type MapStateProfile = {
   profile: ProfileUserType
 }
 type MapDispatchPropsType = {
-  setUserProfile: (profile: ProfileUserType) => void;
+  getProfile: (id: number) => void
 }
 type ProfileAPItype = WithRouterProps & OwnProfileAPItype
 
@@ -45,15 +44,11 @@ class ProfileAPI extends Component<ProfileAPItype> {
     if (!userId) {
       userId = 28525
     }
-    profileAPI.getProfile(userId)
-      .then((data) => {
-        this.props.setUserProfile(data);
-      });
+    this.props.getProfile(userId)
   }
   render() {
     return (
       <Profile
-        setUserProfile={this.props.setUserProfile}
         profile={this.props.profile}
       />
     );
@@ -65,6 +60,6 @@ let mapStateToProps = (state: StateType): MapStateProfile => {
   };
 };
 
-export const ProfileContainer = connect(mapStateToProps, { setUserProfile })(
+export const ProfileContainer = connect(mapStateToProps, { getProfile })(
   withRouter(ProfileAPI)
 );
