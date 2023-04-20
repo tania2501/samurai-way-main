@@ -13,11 +13,12 @@ export type DialogsType = {
   newMessage: string;
 };
 
-let mapStateToProps = (state: StateType): DialogsType => {
+let mapStateToProps = (state: StateType): DialogsType & {auth: boolean} => {
   return {
     dialogs: state.dialogPage.dialogs,
     messages: state.dialogPage.messages,
-    newMessage: state.dialogPage.newMessage
+    newMessage: state.dialogPage.newMessage,
+    auth: state.auth.isAuth
   };
 };
 

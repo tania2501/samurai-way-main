@@ -4,6 +4,8 @@ import { StateType } from "../../mainRedux/store-redux";
 import Profile from "./Profile";
 import { getProfile} from "../../mainRedux/profile-reducer";
 import { WithRouterProps, withRouter } from "./WithRouter";
+import { Navigate } from "react-router-dom";
+
 
 
 export type ContactsType = {
@@ -32,6 +34,7 @@ export type ProfileUserType = {
 export type OwnProfileAPItype = MapDispatchPropsType & MapStateProfile
 type MapStateProfile = {
   profile: ProfileUserType
+  auth: boolean
 }
 type MapDispatchPropsType = {
   getProfile: (id: number) => void
@@ -47,6 +50,7 @@ class ProfileAPI extends Component<ProfileAPItype> {
     this.props.getProfile(userId)
   }
   render() {
+    if (!this.props.auth) return <Navigate to='/login'/>
     return (
       <Profile
         profile={this.props.profile}
@@ -57,6 +61,7 @@ class ProfileAPI extends Component<ProfileAPItype> {
 let mapStateToProps = (state: StateType): MapStateProfile => {
   return {
     profile: state.profilePage.profile,
+    auth: state.auth.isAuth
   };
 };
 

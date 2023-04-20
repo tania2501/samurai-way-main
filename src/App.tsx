@@ -9,6 +9,7 @@ import { Setting } from "./components/SettingComponent/SettingComponent";
 import { UsersContainer } from "./components/users/UsersContainer";
 import { ProfileContainer } from "./components/Profile/ProfileContainer";
 import  HeaderContainer  from "./components/Header/HeaderContainer";
+import { Login } from "./components/login/login";
 
 export type MessageType = {
   id: string;
@@ -38,6 +39,7 @@ function App() {
           <Route path="/news" element={<News />} />
           <Route path="/music" element={<Music />} />
           <Route path="/setting" element={<Setting />}/>
+          <Route path="/login" element={<Login/>}/>
         </Routes>
       </div>
     </div>
