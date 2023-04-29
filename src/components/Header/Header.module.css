@@ -1,7 +1,7 @@
 .header {
   grid-area: h;
-  background: rgb(63,94,251);
-  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(90,97,228,1) 57%, rgba(70,251,252,1) 100%);
+  background: rgb(3, 3, 3);
+  border: 2px solid #fff;
   font-weight: 700;
   color:crimson;
   display: flex;
@@ -19,5 +19,7 @@
 }
 .loginBlock a {
   color: crimson;
+}
+.loginBlock {
   margin-right: 20px;
 }

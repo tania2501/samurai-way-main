@@ -1,5 +1,4 @@
-import axios from "axios";
-
+import axios from "axios"; 
 
 const instanse = axios.create({
   withCredentials: true,
@@ -37,7 +36,7 @@ export const usersAPI = {
     })
   },
   unFollow (id: number) {
-    return instanse.delete(`/follow/${id}`,{ withCredentials: true}).then( response => {
+    return instanse.delete(`/follow/${id}`).then( response => {
       return response.data
     })
   }

@@ -6,7 +6,7 @@
   padding: 10px;
 }
 .dialogsItem a {
-  color: #fff;
+  color: hsl(0, 0%, 3%);
   text-decoration: none;
 }
 

@@ -1,12 +1,8 @@
 .navbar {
   grid-area: n;
-  background: rgb(63, 94, 251);
-  background: linear-gradient(
-    287deg,
-    rgba(63, 94, 251, 1) 0%,
-    rgba(252, 70, 107, 1) 100%
-  );
+  background: rgb(0, 1, 7);
   padding: 30px;
+  border: 2px solid #fff;
 }
 .item {
   margin-bottom: 10px;
@@ -15,7 +11,7 @@
 }
 .item a {
   text-decoration: none;
-  color: darkseagreen;
+  color: rgb(243, 250, 243);
 }
 .item a.activeLink {
   color: gold;

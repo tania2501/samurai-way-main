@@ -4,7 +4,6 @@ import s from './Dialogs.module.css';
 import { DialogMessage } from "./Message/Message";
 import { DialogType } from "../../App";
 import { MessageType } from "../../App";
-import { Navigate } from "react-router-dom";
 
 export type DialogsPropsType ={
   dialogs: DialogType[]
@@ -12,7 +11,6 @@ export type DialogsPropsType ={
   changeMessage: (text: string)=>void
   addMessage: ()=> void
   newMessage: string
-  auth: boolean
 }
 export const Dialogs = (props: DialogsPropsType) => {
 
@@ -26,7 +24,7 @@ export const Dialogs = (props: DialogsPropsType) => {
   const addNewMessage = () => {
     props.addMessage();
   }
-  if(!props.auth) return <Navigate to='/login'/>
+
   return (
     <div className={s.dialogs}>
       <div className={s.dialogsItem}>

@@ -43,24 +43,10 @@ export const Users = (props: UsersType) => {
         <Preloader isFetching={props.isFetching} />
       </div>
       <div className={props.isFetching ? s.offLoader : ""}>
-        <div>
-          {" "}
-          {slicedPages.map((p) => {
-            return (
-              <button
-                onClick={() => props.onChange(p)}
-                key={p}
-                className={props.currentPage === p ? s.selected : ""}
-              >
-                {p}
-              </button>
-            );
-          })}
-        </div>
         {props.users.map((u) => {
           return (
-            <div key={u.id}>
-              <span>
+            <div key={u.id} className={s.userItem}>
+              <span className={s.avatar}>
                 <div className={s.avatar}>
                   <NavLink to={"/profile/" + u.id}>
                     <img src={u.photos.small ? u.photos.small : ava} alt="" />
@@ -86,7 +72,7 @@ export const Users = (props: UsersType) => {
                   )}
                 </div>
               </span>
-              <span>
+              <span className={s.info}>
                 <span>
                   <div>{u.name}</div>
                   <div>{u.status}</div>
@@ -99,6 +85,20 @@ export const Users = (props: UsersType) => {
             </div>
           );
         })}
+        <div>
+          {" "}
+          {slicedPages.map((p) => {
+            return (
+              <button
+                onClick={() => props.onChange(p)}
+                key={p}
+                className={props.currentPage === p ? s.selected : ""}
+              >
+                {p}
+              </button>
+            );
+          })}
+        </div>
       </div>
     </>
   );

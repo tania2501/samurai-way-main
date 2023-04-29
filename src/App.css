@@ -10,6 +10,8 @@
 }
 .app-wrapper-content {
   grid-area: c;
-  background-color:aqua;
+  height: 100vh;
+  border: 2px solid #fff;
+  padding: 5px;
 }
 

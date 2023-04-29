@@ -7,7 +7,7 @@ const Navbar = () => {
     <nav className={a.navbar}>
       <div className={a.item}>
         <NavLink
-          to="/Profile/:userId"
+          to="/profile/:userId"
           className={({ isActive }) => (isActive ? a.activeLink : undefined)}
         >
           Profile
@@ -15,7 +15,7 @@ const Navbar = () => {
       </div>
       <div className={a.item}>
         <NavLink
-          to="/Dialogs"
+          to="/dialogs"
           className={({ isActive }) => (isActive ? a.activeLink : undefined)}
         >
           Message
@@ -23,7 +23,7 @@ const Navbar = () => {
       </div>
       <div className={a.item}>
         <NavLink
-          to="/Users"
+          to="/users"
           className={({ isActive }) => (isActive ? a.activeLink : undefined)}
         >
           Users
@@ -31,7 +31,7 @@ const Navbar = () => {
       </div>
       <div className={a.item}>
         <NavLink
-          to="/News"
+          to="/news"
           className={({ isActive }) => (isActive ? a.activeLink : undefined)}
         >
           News
@@ -39,7 +39,7 @@ const Navbar = () => {
       </div>
       <div className={a.item}>
         <NavLink
-          to="/Music"
+          to="/music"
           className={({ isActive }) => (isActive ? a.activeLink : undefined)}
         >
           Music
@@ -47,7 +47,7 @@ const Navbar = () => {
       </div>
       <div className={a.item}>
         <NavLink
-          to="/Setting"
+          to="/settings"
           className={({ isActive }) => (isActive ? a.activeLink : undefined)}
         >
           Settings
