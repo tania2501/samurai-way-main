@@ -1,18 +1,18 @@
 .navbar {
   grid-area: n;
-  background: rgb(0, 1, 7);
-  padding: 30px;
-  border: 2px solid #fff;
+  padding: 20px;
 }
 .item {
   margin-bottom: 10px;
-  border-style: groove;
-  text-align: center;
 }
 .item a {
   text-decoration: none;
   color: rgb(243, 250, 243);
 }
 .item a.activeLink {
-  color: gold;
+  color: #6c6b68;
+}
+.item img {
+  width: 18px;
+  margin-right: 5px;
 }

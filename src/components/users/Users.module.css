@@ -13,7 +13,7 @@
   height: 100vh;
 }
 .userItem {
-  border: 2px groove black;
+  border: 1px groove black;
   max-width: 300px;
   margin-bottom: 10px;
   display: flex;
@@ -25,4 +25,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.button button {
+  background-color: #deafaf;
+  border-style: groove;
+  border-color: #cfbaba;
+  width: 80px;
+}
+.button button:hover {
+  cursor: pointer;
+  background: #e4cdcd;
 }

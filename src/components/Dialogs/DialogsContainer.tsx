@@ -21,9 +21,7 @@ let mapStateToProps = (state: StateType): DialogsType => {
     newMessage: state.dialogPage.newMessage,
   };
 };
-// const AuthRedirectComponent = WithAuthComponent(Dialogs)
 
-// export const DialogsContainer = connect(mapStateToProps, {changeMessage, addMessage})(AuthRedirectComponent);
 export const DialogsContainer = 
 compose<React.ComponentType>(
   connect(mapStateToProps, {changeMessage, addMessage}),

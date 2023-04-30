@@ -9,7 +9,8 @@ import { usersAPI } from "../dal/api";
 
 const ADD_POST = 'ADD-POST';
 const CHANGE_NEW_TEXT = 'CHANGE-NEW-TEXT';
-const SET_USER_PROFILE = 'SET-USER-PROFILE'
+const SET_USER_PROFILE = 'SET-USER-PROFILE';
+const CHANGE_STATUS = 'CHANGE-STATUS'
 let initialState = {
   posts: [
     { id: v1(), text: "how are you now?", likesCount: 10 },
@@ -17,13 +18,16 @@ let initialState = {
     { id: v1(), text: "are you serious???", likesCount: 14 },
   ],
   newTextValue: "",
-  profile: {} as ProfileUserType
+  profile: {} as ProfileUserType,
+  status: ''
 };
 export const profileReducer: Reducer<ProfilePageType, ActionsTypes> = (
   state = { ...initialState },
   action
 ): ProfilePageType => {
   switch (action.type) {
+    case CHANGE_STATUS: 
+      return {...state, status: action.status}
     case ADD_POST:
       const newPost: PostType = {
         id: v1(),
@@ -56,11 +60,32 @@ export const setUserProfile = (profile: ProfileUserType) => {
     profile
   } as const;
 };
-
+export const setStatus = (status: string) => {
+  return {
+    type: CHANGE_STATUS,
+    status
+  } as const;
+};
 export const getProfile = (id: number): ThunkAction<Promise<void>, StateType, unknown, ActionsTypes> => {
   return async (dispatch) => {
     usersAPI.getProfile(id).then((data) => {
       dispatch(setUserProfile(data));
+    });
+  }
+}
+export const getStatus = (id: number): ThunkAction<Promise<void>, StateType, unknown, ActionsTypes> => {
+  return async (dispatch) => {
+    usersAPI.getStatus(id).then((data) => {
+      dispatch(setStatus(data));
+    });
+  }
+}
+export const changeStatus = (status: string): ThunkAction<Promise<void>, StateType, unknown, ActionsTypes> => {
+  return async (dispatch) => {
+    usersAPI.changeStatus(status).then((data) => {
+      if (data.resultCode === 0) {
+        dispatch(setStatus(status))
+      }
     });
   }
 }

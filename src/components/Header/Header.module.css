@@ -1,9 +1,11 @@
 .header {
-  grid-area: h;
-  background: rgb(3, 3, 3);
-  border: 2px solid #fff;
+  border-bottom: 4px solid #fff;
+}
+.container {
+  width: 80%;
+  margin: 0 auto;
   font-weight: 700;
-  color:crimson;
+  color:#6c6b68;
   display: flex;
   justify-content: space-between;
   align-items: center;

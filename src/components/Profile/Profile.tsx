@@ -9,15 +9,18 @@ export type ProfilePageType = {
   posts: PostType[]
   newTextValue: string
   profile: ProfileUserType
+  status: string
 }
 export type ProfilePropsType ={
   profile: ProfileUserType
+  status: string 
+  changeStatus: (status: string | undefined)=>void
 }
 
 const Profile = (props: ProfilePropsType)=> {
   return (
     <div>
-      <ProfileInfo profile={props.profile}/>
+      <ProfileInfo profile={props.profile} status={props.status} changeStatus={props.changeStatus}/>
       <MyPostsContainer />
     </div>
   )

@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import ava from "../../assets/img/users.png";
+import ava from "../../assets/img/user.jpg";
 import { Preloader } from "../common/Preloader";
 import s from "./Users.module.css";
 
@@ -52,7 +52,7 @@ export const Users = (props: UsersType) => {
                     <img src={u.photos.small ? u.photos.small : ava} alt="" />
                   </NavLink>
                 </div>
-                <div>
+                <div className={s.button}>
                   {u.followed ? (
                     <button disabled={props.isFollowed.some( id => id === u.id)}
                       onClick={() => {

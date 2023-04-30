@@ -6,10 +6,10 @@
 }
 .description img {
   border-radius: 10%;
+  max-width: 220px;
 }
 .info {
   margin-top: auto;
-  text-shadow: 0 0 20px #160000;
   font-size: 20px;
   margin-left: 10px;
 }
@@ -18,4 +18,8 @@
 }
 .name {
   color: #160000;
+}
+.status {
+  font-size: 16px;
+  font-weight: 200;
 }

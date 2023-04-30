@@ -1,6 +1,12 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import a from "./Navbar.module.css";
+import home from './../../assets/icons/home-3-32.png'
+import friend  from './../../assets/icons/group-32.png'
+import message  from './../../assets/icons/message-2-32.png'
+import music from './../../assets/icons/music-2-32.png'
+import set from './../../assets/icons/settings-25-32.png'
+import news from './../../assets/icons/newspaper-32.png'
 
 const Navbar = () => {
   return (
@@ -10,6 +16,7 @@ const Navbar = () => {
           to="/profile/:userId"
           className={({ isActive }) => (isActive ? a.activeLink : undefined)}
         >
+          <img src={home} alt="#" />
           Profile
         </NavLink>
       </div>
@@ -18,6 +25,7 @@ const Navbar = () => {
           to="/dialogs"
           className={({ isActive }) => (isActive ? a.activeLink : undefined)}
         >
+          <img src={message} alt="#" />
           Message
         </NavLink>
       </div>
@@ -26,6 +34,7 @@ const Navbar = () => {
           to="/users"
           className={({ isActive }) => (isActive ? a.activeLink : undefined)}
         >
+          <img src={friend} alt="#" />
           Users
         </NavLink>
       </div>
@@ -34,6 +43,7 @@ const Navbar = () => {
           to="/news"
           className={({ isActive }) => (isActive ? a.activeLink : undefined)}
         >
+          <img src={news} alt="#" />
           News
         </NavLink>
       </div>
@@ -42,6 +52,7 @@ const Navbar = () => {
           to="/music"
           className={({ isActive }) => (isActive ? a.activeLink : undefined)}
         >
+          <img src={music} alt="#" />
           Music
         </NavLink>
       </div>
@@ -50,6 +61,7 @@ const Navbar = () => {
           to="/settings"
           className={({ isActive }) => (isActive ? a.activeLink : undefined)}
         >
+          <img src={set} alt="#" />
           Settings
         </NavLink>
       </div>
