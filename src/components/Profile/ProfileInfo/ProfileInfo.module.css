@@ -3,10 +3,12 @@
   color: white;
   font-weight: bold;
   display: flex;
+  flex-wrap: wrap;
 }
 .description img {
   border-radius: 10%;
   max-width: 220px;
+  width: 100%;
 }
 .info {
   margin-top: auto;
