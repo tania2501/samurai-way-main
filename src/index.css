@@ -1,15 +1,19 @@
 body {
   margin: 0;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: "Lobster", cursive;
+  font-family: "Ubuntu", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #deafaf;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 a {
-	text-decoration: none;
+  text-decoration: none;
+}
+p {
+  margin: 0;
 }

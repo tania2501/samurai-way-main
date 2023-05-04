@@ -1,9 +1,10 @@
-import React, { ChangeEvent } from "react";
+import React from "react";
 import { DialogItem } from "./DialogItem/DialogItem";
 import s from './Dialogs.module.css';
 import { DialogMessage } from "./Message/Message";
 import { DialogType } from "../../App";
 import { MessageType } from "../../App";
+import { AddForm } from "../form/AddForm";
 
 export type DialogsPropsType ={
   dialogs: DialogType[]
@@ -13,17 +14,9 @@ export type DialogsPropsType ={
   newMessage: string
 }
 export const Dialogs = (props: DialogsPropsType) => {
-
   let dialogsElement = props.dialogs.map(dialog => <DialogItem name={dialog.name} id={dialog.id} key={dialog.id}/>);
 
   let messagesElement = props.messages.map(message => <DialogMessage message={message.message} id={message.id} key={message.id}/>);
-
-  const changeMessage = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    props.changeMessage(e.currentTarget.value)
-  }
-  const addNewMessage = () => {
-    props.addMessage();
-  }
 
   return (
     <div className={s.dialogs}>
@@ -32,8 +25,7 @@ export const Dialogs = (props: DialogsPropsType) => {
       </div>
       <div className={s.messages}>
         {messagesElement} 
-        <div><textarea value={props.newMessage} onChange={changeMessage}></textarea></div>
-        <div><button onClick={addNewMessage}>Send</button></div>    
+        <AddForm value={props.newMessage} onChange={props.changeMessage} onClick={props.addMessage} title={'Send message'}/>
       </div>
     </div>
   );

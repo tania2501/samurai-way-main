@@ -1,11 +1,13 @@
 import React from "react";
 import logo from "./../../assets/icons/logo.png";
 import s from "./Header.module.css";
+import logout from '../../assets/icons/logout-32.png'
 import { NavLink } from "react-router-dom";
 
 type HeaderType = {
   auth: boolean;
   login: string;
+  logOutUser: ()=>void
 };
 export const Header = (props: HeaderType) => {
   return (
@@ -16,7 +18,7 @@ export const Header = (props: HeaderType) => {
           <span> OnLine</span>
         </div>
         <div className={s.loginBlock}>
-          {props.auth ? props.login : <NavLink to="/login">Login</NavLink>}
+          {props.auth ? <div className={s.login}><span>{props.login}</span><img src={logout} alt="#" onClick={props.logOutUser}/></div> : <NavLink to="/login">Login</NavLink>}
         </div>
       </div>
     </header>

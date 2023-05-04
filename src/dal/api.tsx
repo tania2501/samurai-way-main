@@ -1,4 +1,5 @@
 import axios from "axios"; 
+import { LoginDataType } from "../mainRedux/login-reducer";
 
 const instance = axios.create({
   withCredentials: true,
@@ -19,16 +20,6 @@ export const usersAPI = {
       return response.data
     })
   },
-   auth() {
-    return instance.get(`/auth/me`).then(response => {
-      return response.data
-    })
-  },
-  getProfile (userId: number) {
-    return instance.get('/profile/' + userId).then( response => {
-      return response.data
-    })
-  },
   getFollow(id: number) {
     return instance.post(`/follow/${id}`, {}).then( response => {
       return response.data
@@ -36,6 +27,13 @@ export const usersAPI = {
   },
   unFollow (id: number) {
     return instance.delete(`/follow/${id}`).then( response => {
+      return response.data
+    })
+  },
+}
+export const profileAPI = {
+  getProfile (userId: number) {
+    return instance.get('/profile/' + userId).then( response => {
       return response.data
     })
   },
@@ -48,7 +46,24 @@ export const usersAPI = {
     return instance.put('/profile/status', {status}).then( response => {
       return response.data
     })
+  },
+
+}
+export const authAPI = {
+  auth() {
+    return instance.get(`/auth/me`).then(response => {
+      return response.data
+    })
+  },
+  login(data: LoginDataType) {
+    return instance.post('/auth/login', data).then( response => {
+      return response.data
+    })
+  },
+  logOut() {
+    return instance.delete('/auth/login').then( response => {
+      return response.data
+    })
   }
 }
-
 

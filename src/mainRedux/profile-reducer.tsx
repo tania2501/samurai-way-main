@@ -1,11 +1,11 @@
 import { v1 } from "uuid";
 import { PostType } from "../App";
 import { ProfilePageType } from "../components/Profile/Profile";
-import { ActionsTypes, StateType } from "./store-redux";
+import { ActionsTypes } from "./store-redux";
 import { Reducer } from "redux";
 import { ProfileUserType } from "../components/Profile/ProfileContainer";
-import { ThunkAction } from "redux-thunk";
-import { usersAPI } from "../dal/api";
+import { profileAPI } from "../dal/api";
+import { ThunkType } from "./login-reducer";
 
 const ADD_POST = 'ADD-POST';
 const CHANGE_NEW_TEXT = 'CHANGE-NEW-TEXT';
@@ -66,26 +66,17 @@ export const setStatus = (status: string) => {
     status
   } as const;
 };
-export const getProfile = (id: number): ThunkAction<Promise<void>, StateType, unknown, ActionsTypes> => {
-  return async (dispatch) => {
-    usersAPI.getProfile(id).then((data) => {
-      dispatch(setUserProfile(data));
-    });
-  }
+export const getProfile = (id: number): ThunkType => async dispatch => {
+    const res = await profileAPI.getProfile(id)
+    dispatch(setUserProfile(res));
 }
-export const getStatus = (id: number): ThunkAction<Promise<void>, StateType, unknown, ActionsTypes> => {
-  return async (dispatch) => {
-    usersAPI.getStatus(id).then((data) => {
-      dispatch(setStatus(data));
-    });
-  }
+export const getStatus = (id: number): ThunkType => async dispatch => {
+  const res = await profileAPI.getStatus(id)
+  dispatch(setStatus(res));
 }
-export const changeStatus = (status: string): ThunkAction<Promise<void>, StateType, unknown, ActionsTypes> => {
-  return async (dispatch) => {
-    usersAPI.changeStatus(status).then((data) => {
-      if (data.resultCode === 0) {
-        dispatch(setStatus(status))
-      }
-    });
+export const changeStatus = (status: string): ThunkType => async dispatch => {
+  const res = await profileAPI.changeStatus(status)
+  if (res.resultCode === 0) {
+    dispatch(setStatus(status))
   }
 }

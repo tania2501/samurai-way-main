@@ -9,7 +9,7 @@ import { Setting } from "./components/SettingComponent/SettingComponent";
 import { UsersContainer } from "./components/users/UsersContainer";
 import { ProfileContainer } from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
-import { Login } from "./components/login/login";
+import  Login  from "./components/login/login";
 
 export type MessageType = {
   id: string;

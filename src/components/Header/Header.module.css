@@ -25,3 +25,11 @@
 .loginBlock {
   margin-right: 20px;
 }
+.login img {
+  width: 20px;
+  cursor: pointer;
+}
+.login {
+  display: flex;
+  align-items: center;
+}
