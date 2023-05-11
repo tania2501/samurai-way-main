@@ -26,10 +26,11 @@ export const setAuthUserError = (error: string) => {
 };
 //thunks
 export const authUser = (): ThunkType => async (dispatch) => {
-  const res = await authAPI.auth();
-  if (res.resultCode === 0) {
-    dispatch(setAuthUserData(res.data, true));
-  }
+  return authAPI.auth().then(res=> {
+    if (res.resultCode === 0) {
+      dispatch(setAuthUserData(res.data, true));
+    }
+  })
 };
 export const loginUser = (loginData: LoginDataType): ThunkType => async (dispatch) => {
   const res = await authAPI.login(loginData);
