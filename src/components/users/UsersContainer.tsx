@@ -13,6 +13,7 @@ import {
 import { UserType } from "./Users";
 import React, { Component } from "react";
 import { Users } from "./Users";
+import { getCurrentPage, getIsFetching, getIsFollowed, getPageSize, getUser, getUserTotalCount } from "../../mainRedux/user-selector";
 
 
 type UsersAPIType = {
@@ -59,12 +60,12 @@ class UsersAPI extends Component<UsersAPIType> {
 
 let mapStateToProps = (state: StateType) => {
   return {
-    users: state.usersPage.users,
-    pageSize: state.usersPage.pageSize,
-    totalUsersCount: state.usersPage.totalUsersCount,
-    currentPage: state.usersPage.currentPage,
-    isFetching: state.usersPage.isFetching,
-    isFollowed: state.usersPage.isFollowed
+    users: getUser(state),
+    pageSize: getPageSize(state),
+    totalUsersCount: getUserTotalCount(state),
+    currentPage: getCurrentPage(state),
+    isFetching: getIsFetching(state),
+    isFollowed: getIsFollowed(state)
   };
 };
 
