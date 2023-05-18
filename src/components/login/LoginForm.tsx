@@ -15,7 +15,6 @@ export const LoginForm = (props: LoginFormPropsType) => {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors, isValid },
   } = useForm<LoginFormType>({
     mode: "onChange",
