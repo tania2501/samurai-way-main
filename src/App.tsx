@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import { DialogsContainer } from "./components/Dialogs/DialogsContainer";
 import { Music } from "./components/Music/Music";
@@ -10,9 +10,9 @@ import { UsersContainer } from "./components/users/UsersContainer";
 import { ProfileContainer } from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/login/login";
-import { connect } from "react-redux";
+import { Provider, connect } from "react-redux";
 import { initializationApp } from "./mainRedux/app-reducer";
-import { StateType } from "./mainRedux/store-redux";
+import { StateType, store } from "./mainRedux/store-redux";
 import { Preloader } from "./components/common/Preloader";
 
 export type MessageType = {
@@ -29,16 +29,16 @@ export type PostType = {
   likesCount: number;
 };
 type AppPropsType = {
-  initializationApp: ()=>void
-  initialization: boolean
-}
+  initializationApp: () => void;
+  initialization: boolean;
+};
 class App extends React.Component<AppPropsType> {
   componentDidMount() {
-    this.props.initializationApp()
+    this.props.initializationApp();
   }
   render() {
-    if(!this.props.initialization) {
-      return <Preloader isFetching={true}/>
+    if (!this.props.initialization) {
+      return <Preloader isFetching={true} />;
     }
     return (
       <div className="app-wrapper">
@@ -63,10 +63,19 @@ class App extends React.Component<AppPropsType> {
   }
 }
 
-const mapStateToProps = (state: StateType): {initialization: boolean} => {
+const mapStateToProps = (state: StateType): { initialization: boolean } => {
   return {
-    initialization: state.app.initialization
-  }
-}
+    initialization: state.app.initialization,
+  };
+};
 
-export default connect(mapStateToProps, {initializationApp})(App);
+let AppContainer = connect(mapStateToProps, { initializationApp })(App);
+export const SamuraiApp = () => {
+  return (
+    <BrowserRouter>
+      <Provider store={store}>
+        <AppContainer />
+      </Provider>
+    </BrowserRouter>
+  );
+};

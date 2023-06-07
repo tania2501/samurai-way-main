@@ -27,13 +27,14 @@ export const ProfileStatus = (props: {
     <div className={s.status}>
       {editMode ? (
         <input
+          data-testid="input"
           value={status}
           onChange={changeStatus}
           onBlur={disebleMode}
           autoFocus
         />
       ) : (
-        <span onDoubleClick={activateMode}>
+        <span onDoubleClick={activateMode} data-testid="span">
           {props.status ? props.status : "Add status"}
         </span>
       )}
