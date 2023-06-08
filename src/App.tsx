@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import { DialogsContainer } from "./components/Dialogs/DialogsContainer";
 import { Music } from "./components/Music/Music";
 import Navbar from "./components/Navbar/Navbar";
 import { News } from "./components/News/News";
@@ -15,6 +14,7 @@ import { initializationApp } from "./mainRedux/app-reducer";
 import { StateType, store } from "./mainRedux/store-redux";
 import { Preloader } from "./components/common/Preloader";
 
+const DialogsContainer = React.lazy(() => import("./components/Dialogs/DialogsContainer")) 
 export type MessageType = {
   id: string;
   message: string;
@@ -49,7 +49,7 @@ class App extends React.Component<AppPropsType> {
             <Routes>
               <Route path="/profile" element={<ProfileContainer />} />
               <Route path="/profile/:userId" element={<ProfileContainer />} />
-              <Route path="/dialogs" element={<DialogsContainer />} />
+              <Route path="/dialogs" element={<React.Suspense fallback={<Preloader isFetching={true}/>}><DialogsContainer /></React.Suspense>} />
               <Route path="/users" element={<UsersContainer />} />
               <Route path="/news" element={<News />} />
               <Route path="/music" element={<Music />} />

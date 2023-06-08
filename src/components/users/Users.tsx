@@ -21,9 +21,9 @@ export type UsersType = {
   currentPage: number;
   onChange: (page: number) => void;
   isFetching: boolean;
-  isFollowed: Array<number>
-  followUser: (id: number)=>void
-  unfollowUser: (id: number)=>void
+  isFollowed: Array<number>;
+  followUser: (id: number) => void;
+  unfollowUser: (id: number) => void;
 };
 
 export const Users = (props: UsersType) => {
@@ -54,17 +54,19 @@ export const Users = (props: UsersType) => {
                 </div>
                 <div className={s.button}>
                   {u.followed ? (
-                    <button disabled={props.isFollowed.some( id => id === u.id)}
+                    <button
+                      disabled={props.isFollowed.some((id) => id === u.id)}
                       onClick={() => {
-                        props.unfollowUser(u.id)
+                        props.unfollowUser(u.id);
                       }}
                     >
                       Followed
                     </button>
                   ) : (
-                    <button disabled={props.isFollowed.some(id => id === u.id)}
+                    <button
+                      disabled={props.isFollowed.some((id) => id === u.id)}
                       onClick={() => {
-                        props.followUser(u.id)
+                        props.followUser(u.id);
                       }}
                     >
                       Unfollow
@@ -86,18 +88,19 @@ export const Users = (props: UsersType) => {
           );
         })}
         <div>
-          {" "}
+          {props.currentPage > 1 && <button onClick={()=>props.onChange(curP - 1)}>Prev</button>}
           {slicedPages.map((p) => {
             return (
-              <button
-                onClick={() => props.onChange(p)}
-                key={p}
-                className={props.currentPage === p ? s.selected : ""}
-              >
-                {p}
-              </button>
+                <button
+                  onClick={() => props.onChange(p)}
+                  key={p}
+                  className={props.currentPage === p ? s.selected : ""}
+                >
+                  {p}
+                </button>
             );
           })}
+          <button onClick={()=>props.onChange(curP + 1)}>Next</button>
         </div>
       </div>
     </>

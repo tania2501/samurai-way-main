@@ -22,8 +22,9 @@ let mapStateToProps = (state: StateType): DialogsType => {
   };
 };
 
-export const DialogsContainer = 
+const DialogsContainer = 
 compose<React.ComponentType>(
   connect(mapStateToProps, {changeMessage, addMessage}),
   WithAuthComponent
    )(Dialogs)
+export default DialogsContainer;
