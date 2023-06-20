@@ -11,6 +11,7 @@ const ADD_POST = 'ADD-POST';
 const CHANGE_NEW_TEXT = 'CHANGE-NEW-TEXT';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
 const CHANGE_STATUS = 'CHANGE-STATUS'
+const CHANGE_PHOTO = 'CHANGE_PHOTO'
 let initialState = {
   posts: [
     { id: v1(), text: "how are you now?", likesCount: 10 },
@@ -39,7 +40,9 @@ export const profileReducer: Reducer<ProfilePageType, ActionsTypes> = (
     case CHANGE_NEW_TEXT:
       return {...state, newTextValue: action.text}
     case SET_USER_PROFILE:
-        return {...state, profile: action.profile}
+      return {...state, profile: action.profile}
+    case CHANGE_PHOTO: 
+      return {...state, profile: {...state.profile, photos: action.file}}
     default:
       return state;
   }
@@ -66,6 +69,12 @@ export const setStatus = (status: string) => {
     status
   } as const;
 };
+export const setPhoto = (file: {small: string | undefined, large: string | undefined}) => {
+  return {
+    type: CHANGE_PHOTO,
+    file
+  } as const;
+};
 export const getProfile = (id: number): ThunkType => async dispatch => {
     const res = await profileAPI.getProfile(id)
     dispatch(setUserProfile(res));
@@ -78,5 +87,12 @@ export const changeStatus = (status: string): ThunkType => async dispatch => {
   const res = await profileAPI.changeStatus(status)
   if (res.resultCode === 0) {
     dispatch(setStatus(status))
+  }
+}
+export const updatePhoto = (file: File): ThunkType => async dispatch => {
+  const res = await profileAPI.updatePhoto(file)
+  console.log(res)
+  if (res.resultCode === 0) {
+    dispatch(setPhoto(res.data.photos))
   }
 }

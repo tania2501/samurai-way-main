@@ -10,7 +10,7 @@ const initialState = {} as AutorizationType;
 export const loginReducer: Reducer<AutorizationType, ActionsTypes> = ( state = { ...initialState },action ): AutorizationType => {
   switch (action.type) {
     case SET_USER_DATA:
-      return { ...state, ...action.data, isAuth: action.isAuth };
+      return { ...state, ...action.data, isAuth: action.isAuth, id: action.id };
     case SET_AUTH_ERROR:
       return {...state, error: action.error}
     default:
@@ -18,8 +18,8 @@ export const loginReducer: Reducer<AutorizationType, ActionsTypes> = ( state = {
   }
 };
 //AC
-export const setAuthUserData = (data: LoginDataType, isAuth: boolean) => {
-  return { type: SET_USER_DATA, data, isAuth } as const;
+export const setAuthUserData = (data: LoginDataType, isAuth: boolean, id: number) => {
+  return { type: SET_USER_DATA, data, isAuth, id } as const;
 };
 export const setAuthUserError = (error: string) => {
   return { type: SET_AUTH_ERROR, error } as const;
@@ -28,7 +28,7 @@ export const setAuthUserError = (error: string) => {
 export const authUser = (): ThunkType => async (dispatch) => {
   return authAPI.auth().then(res=> {
     if (res.resultCode === 0) {
-      dispatch(setAuthUserData(res.data, true));
+      dispatch(setAuthUserData(res.data, true, res.data.id));
     }
   })
 };
@@ -43,7 +43,7 @@ export const loginUser = (loginData: LoginDataType): ThunkType => async (dispatc
 export const logOutUser = (): ThunkType => async dispatch => {
   const res = await authAPI.logOut()
   if (res.resultCode === 0) {
-    dispatch(setAuthUserData(res.data, false));
+    dispatch(setAuthUserData(res.data, false, res.data.id));
   }
 };
 //types

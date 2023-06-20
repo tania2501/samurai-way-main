@@ -13,7 +13,7 @@ const Navbar = () => {
     <nav className={a.navbar}>
       <div className={a.item}>
         <NavLink
-          to="/profile/:userId"
+          to="/profile"
           className={({ isActive }) => (isActive ? a.activeLink : undefined)}
         >
           <img src={home} alt="#" />
