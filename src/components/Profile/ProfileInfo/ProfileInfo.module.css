@@ -45,3 +45,17 @@
   background-color: #fff;
   border-radius: 5px;
 }
+p, .contacts {
+  font-size: 14px;
+  font-weight: 400;
+}
+.contacts {
+  margin-left: 20px;
+}
+.form input {
+  outline: none;
+  border-radius: 8px;
+  border: none;
+  background-color: #ebedf0;
+  margin-top: 5px;
+}

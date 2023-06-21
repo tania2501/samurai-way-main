@@ -6,6 +6,7 @@ import {
   getProfile,
   getStatus,
   updatePhoto,
+  updateProfileData,
 } from "../../mainRedux/profile-reducer";
 import { WithRouterProps, withRouter } from "./WithRouter";
 import { WithAuthComponent } from "../hoc/withAuthComponent";
@@ -28,8 +29,9 @@ export type ProfileUserType = {
   lookingForAJob: boolean;
   lookingForAJobDescription: string;
   fullName: string;
-  userId: number;
-  photos: {
+  AboutMe: string
+  userId?: number;
+  photos?: {
     small: string | undefined;
     large: string | undefined;
   };
@@ -46,6 +48,7 @@ type MapDispatchPropsType = {
   getStatus: (id: number) => void;
   changeStatus: (status: string | undefined) => void;
   updatePhoto: (file: File) => void
+  updateProfileData: (data: ProfileUserType) => void
 };
 type ProfileAPItype = WithRouterProps & OwnProfileAPItype;
 
@@ -77,6 +80,7 @@ class ProfileAPI extends React.Component<ProfileAPItype> {
         status={this.props.status}
         changeStatus={this.props.changeStatus}
         updatePhoto={this.props.updatePhoto}
+        updateProfileData={this.props.updateProfileData}
       />
     );
   }
@@ -91,7 +95,7 @@ let mapStateToProps = (state: StateType): MapStateProfile => {
 };
 
 export const ProfileContainer = compose<React.ComponentType>(
-  connect(mapStateToProps, { getProfile, getStatus, changeStatus, updatePhoto }),
+  connect(mapStateToProps, { getProfile, getStatus, changeStatus, updatePhoto, updateProfileData }),
   WithAuthComponent,
   withRouter
 )(ProfileAPI);

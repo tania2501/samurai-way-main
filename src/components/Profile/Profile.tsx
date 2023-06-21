@@ -17,12 +17,13 @@ export type ProfilePropsType ={
   changeStatus: (status: string | undefined)=>void
   isOwner: boolean
   updatePhoto: (file: File) => void
+  updateProfileData: (data: ProfileUserType) => void
 }
 
 const Profile = (props: ProfilePropsType)=> {
   return (
     <div>
-      <ProfileInfo updatePhoto={props.updatePhoto} isOwner={props.isOwner} profile={props.profile} status={props.status} changeStatus={props.changeStatus}/>
+      <ProfileInfo updateProfileData={props.updateProfileData} updatePhoto={props.updatePhoto} isOwner={props.isOwner} profile={props.profile} status={props.status} changeStatus={props.changeStatus}/>
       <MyPostsContainer />
     </div>
   )

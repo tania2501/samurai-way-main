@@ -1,5 +1,6 @@
 import axios from "axios";
 import { LoginDataType } from "../mainRedux/login-reducer";
+import { ProfileUserType } from "../components/Profile/ProfileContainer";
 
 const instance = axios.create({
   withCredentials: true,
@@ -64,6 +65,11 @@ export const profileAPI = {
         return response.data;
       });
   },
+  updateProfileData(data: ProfileUserType) {
+    return instance.put('/profile', data).then((response) => {
+      return response.data
+    })
+  }
 };
 export const authAPI = {
   auth() {
