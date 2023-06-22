@@ -12,13 +12,12 @@ export type ProfileFormType = {
   contacts: ContactsType;
   AboutMe: string
 };
-export const ProfileDataForm = (props: { setEdit: () => void, updateProfileData: (data: ProfileUserType) => void}) => {
+export const ProfileDataForm = (props: { setEdit: () => void, updateProfileData: (data: ProfileUserType) => void, profile: ProfileUserType}) => {
   const {
     register,
-    handleSubmit,
-    formState: { errors, isValid },
+    handleSubmit
   } = useForm<ProfileFormType>({
-    mode: "onChange",
+    mode: "onChange", defaultValues: props.profile
   });
   const submitHandler: SubmitHandler<ProfileFormType> = (data) => {
     console.log(data);

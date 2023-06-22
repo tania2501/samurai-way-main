@@ -7,3 +7,11 @@
   font-size: 12px;
   display: flex;
 }
+.captcha {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: flex-start;
+  margin-bottom: 10px;
+}

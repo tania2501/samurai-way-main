@@ -29,7 +29,7 @@ export type ProfileUserType = {
   lookingForAJob: boolean;
   lookingForAJobDescription: string;
   fullName: string;
-  AboutMe: string
+  AboutMe?: string
   userId?: number;
   photos?: {
     small: string | undefined;

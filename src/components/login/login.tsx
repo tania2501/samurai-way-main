@@ -8,13 +8,14 @@ type LoginPropsType = {
   loginUser: (loginData: LoginDataType)=>void
   auth: boolean
   error: string
+  captcha: string | null
 }
 const Login = (props: LoginPropsType) => {
   if(props.auth) return <Navigate to='/profile'/>
   return (
     <div>
       <h1>Login</h1>
-      <LoginForm loginUser={props.loginUser} error={props.error}/>
+      <LoginForm captcha={props.captcha} loginUser={props.loginUser} error={props.error}/>
     </div>
   );
 };
@@ -22,7 +23,8 @@ const Login = (props: LoginPropsType) => {
 const mapStateToProps = (state: StateType) => {
   return {
     auth: state.auth.isAuth,
-    error: state.auth.error
+    error: state.auth.error,
+    captcha: state.auth.captcha
   }
 }
 export default connect(mapStateToProps, {loginUser})(Login)

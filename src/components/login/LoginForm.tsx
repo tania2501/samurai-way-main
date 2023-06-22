@@ -6,12 +6,13 @@ type LoginFormType = {
   email: string;
   password: string;
   rememberMe: boolean;
+  captcha: string
 };
 type LoginFormPropsType = {
   loginUser: (loginData: LoginDataType)=>void
   error: string
 }
-export const LoginForm = (props: LoginFormPropsType) => {
+export const LoginForm = (props: LoginFormPropsType & {captcha: string | null}) => {
   const {
     register,
     handleSubmit,
@@ -64,6 +65,7 @@ export const LoginForm = (props: LoginFormPropsType) => {
       <div className={s.remember}>
         <input type="checkbox" {...register("rememberMe")} /> remember me
       </div>
+      {props.captcha && <div className={s.captcha}><img src={props.captcha} alt="#" /><input type="text" {...register('captcha')}/></div>}
       <div>
         <button type="submit" disabled={!isValid}>
           Login

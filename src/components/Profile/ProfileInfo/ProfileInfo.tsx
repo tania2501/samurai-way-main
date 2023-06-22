@@ -50,7 +50,7 @@ export const ProfileInfo = (props: {
             status={props.status}
             changeStatus={props.changeStatus}
           />
-        : <ProfileDataForm updateProfileData={props.updateProfileData} setEdit={() => setEditMode(false)}/>
+        : <ProfileDataForm profile={props.profile} updateProfileData={props.updateProfileData} setEdit={() => setEditMode(false)}/>
         }   
         </div>
       </div>

@@ -12,7 +12,7 @@ const CHANGE_NEW_TEXT = "CHANGE-NEW-TEXT";
 const SET_USER_PROFILE = "SET-USER-PROFILE";
 const CHANGE_STATUS = "CHANGE-STATUS";
 const CHANGE_PHOTO = "CHANGE_PHOTO";
-const CHANGE_PROFILE = 'CHANGE_PROFILE'
+
 let initialState = {
   posts: [
     { id: v1(), text: "how are you now?", likesCount: 10 },
@@ -44,8 +44,6 @@ export const profileReducer: Reducer<ProfilePageType, ActionsTypes> = (
       return { ...state, profile: action.profile };
     case CHANGE_PHOTO:
       return { ...state, profile: { ...state.profile, photos: action.file } };
-    case CHANGE_PROFILE:
-      return { ...state, profile: action.data };
     default:
       return state;
   }
@@ -82,12 +80,6 @@ export const setPhoto = (file: {
     file,
   } as const;
 };
-export const setProfileData = (data: ProfileUserType) => {
-  return {
-    type: CHANGE_PROFILE,
-    data,
-  } as const;
-};
 export const getProfile =
   (id: number): ThunkType =>
   async (dispatch) => {
@@ -119,10 +111,10 @@ export const updatePhoto =
   };
 export const updateProfileData =
   (data: ProfileUserType): ThunkType =>
-  async (dispatch) => {
+  async (dispatch, getState) => {
     const res = await profileAPI.updateProfileData(data);
-    console.log(res);
+    const userId = getState().auth.id
     if (res.resultCode === 0) {
-      dispatch(setProfileData(data));
+      dispatch(getProfile(userId));
     }
   };
