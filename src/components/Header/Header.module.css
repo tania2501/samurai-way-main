@@ -33,3 +33,79 @@
   display: flex;
   align-items: center;
 }
+.menuBurger {
+  display: none;
+}
+
+.item a {
+  text-decoration: none;
+  color: rgb(243, 250, 243);
+}
+.item a:hover {
+  border: 1px solid #333;
+  padding: 4px 29px;
+}
+.activeLink {
+  color: #6c6b68;
+  transition: none 1s ease;
+}
+
+.hamburger {
+  display: none;
+}
+.bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  background-color: #fff;
+}
+.hamburger.active .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active .bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.active .bar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+@media (max-width: 600px) {
+  .menuBurger{
+    display: block;
+  }
+  .navmenu {
+    display: inline-flex;
+    position: fixed;
+    left: -100%;
+    top:0;
+    flex-direction: column;
+    background-color: #deafaf;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    text-align: center;
+    transition: 0.3s;
+  }
+
+  .navmenu.active {
+    left: 0;
+    padding: 50px 0px;
+  }
+ 
+  .item {
+    margin: 1.5rem 0;
+  }
+
+  .hamburger {
+    display: block;
+    cursor: pointer;
+    float: right;
+  }
+  .logo {
+    margin-right: auto;
+  }
+}

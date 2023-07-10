@@ -1,34 +1,52 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import s from './login.module.css'
+import s from "./login.module.css";
 import { LoginDataType } from "../../mainRedux/login-reducer";
 
 type LoginFormType = {
   email: string;
   password: string;
   rememberMe: boolean;
-  captcha: string
+  captcha: string;
 };
 type LoginFormPropsType = {
-  loginUser: (loginData: LoginDataType)=>void
-  error: string
-}
-export const LoginForm = (props: LoginFormPropsType & {captcha: string | null}) => {
+  loginUser: (loginData: LoginDataType) => void;
+  error: string;
+};
+export const LoginForm = (
+  props: LoginFormPropsType & { captcha: string | null }
+) => {
   const {
     register,
     handleSubmit,
     formState: { errors, isValid },
   } = useForm<LoginFormType>({
-    mode: "onChange",
+    mode: "onTouched",
     defaultValues: { email: "" },
   });
   const submitHandler: SubmitHandler<LoginFormType> = (data) => {
-    props.loginUser(data)
+    props.loginUser(data);
   };
   return (
     <form onSubmit={handleSubmit(submitHandler)}>
       <div>
-      { props.error ? <span className={s.error}>{props.error}</span> : ''}
-      {<p className={s.error}> {errors.email && errors.email.message}</p>}
+        <p>
+          To log in get registered
+          <a
+            href={"https://social-network.samuraijs.com/"}
+            target={"_blank"}
+            rel="noreferrer"
+          >
+            {" "}
+            here
+          </a>
+        </p>
+        <p>or use common test account credentials:</p>
+        <p>Email: free@samuraijs.com</p>
+        <p>Password: free</p>
+      </div>
+      <div>
+        {props.error ? <span className={s.error}>{props.error}</span> : ""}
+        {<p className={s.error}> {errors.email && errors.email.message}</p>}
         <input
           type="email"
           placeholder="Email"
@@ -43,7 +61,12 @@ export const LoginForm = (props: LoginFormPropsType & {captcha: string | null}) 
         />
       </div>
       <div>
-      {<p className={s.error}> {errors.password && errors.password.message}</p>}
+        {
+          <p className={s.error}>
+            {" "}
+            {errors.password && errors.password.message}
+          </p>
+        }
         <input
           type="password"
           placeholder="Password"
@@ -60,12 +83,16 @@ export const LoginForm = (props: LoginFormPropsType & {captcha: string | null}) 
             pattern: { value: /^\S*$/, message: "No spaces allowed" },
           })}
         />
-        
       </div>
       <div className={s.remember}>
         <input type="checkbox" {...register("rememberMe")} /> remember me
       </div>
-      {props.captcha && <div className={s.captcha}><img src={props.captcha} alt="#" /><input type="text" {...register('captcha')}/></div>}
+      {props.captcha && (
+        <div className={s.captcha}>
+          <img src={props.captcha} alt="#" />
+          <input type="text" {...register("captcha")} />
+        </div>
+      )}
       <div>
         <button type="submit" disabled={!isValid}>
           Login

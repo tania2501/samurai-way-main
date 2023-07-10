@@ -1,6 +1,4 @@
-.app-wrapper {
 
-}
 .container {
   display: grid;
   grid-template-columns: 20% 80%;
@@ -8,6 +6,9 @@
     "n c"; 
     width: 80%;
     margin: 0 auto;
+}
+.containerMobile {
+  display: none;
 }
 .app-wrapper-content {
   grid-area: c;
@@ -21,4 +22,16 @@
     grid-template-columns: 35% 65%;
   }
 }
-
+@media (max-width: 600px) {
+  .container {
+    display: none;
+  }
+  .containerMobile {
+    display: block;
+    margin: 0 auto;
+  }
+  .app-wrapper-content {
+    display: flex;
+    justify-content: center;
+  }
+}

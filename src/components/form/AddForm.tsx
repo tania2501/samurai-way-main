@@ -17,7 +17,7 @@ export const AddForm = (props: AddFormPropsType) => {
     reset,
     formState: { isValid},
   } = useForm<AddFormType>({
-    mode: "onChange",
+    mode: "all",
   });
   const onChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     props.onChange(e.currentTarget.value)
@@ -28,7 +28,7 @@ export const AddForm = (props: AddFormPropsType) => {
   };
   return (
     <form onSubmit={handleSubmit(submitHandler)}>
-        <div><textarea {...register('text', {required: true, minLength: 3, maxLength: 50})} value={props.value} onChange={onChange} placeholder="message"/></div>
+        <div><textarea {...register('text', {required: 'Field is required', minLength: 3, maxLength: 50})} value={props.value} onChange={onChange} placeholder="message"/></div>
         <div><button disabled={!isValid} onClick={()=>props.onClick()} type="submit">{props.title}</button></div>
       </form>
   )
