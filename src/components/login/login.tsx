@@ -11,7 +11,7 @@ type LoginPropsType = {
   captcha: string | null
 }
 const Login = (props: LoginPropsType) => {
-  if(props.auth) return <Navigate to='/profile'/>
+  if(props.auth) return <Navigate to='/samurai-way-main/profile'/>
   return (
     <div>
       <h1>Login</h1>

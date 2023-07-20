@@ -48,7 +48,7 @@ export const Users = (props: UsersType) => {
             <div key={u.id} className={s.userItem}>
               <span className={s.avatar}>
                 <div className={s.avatar}>
-                  <NavLink to={"/profile/" + u.id}>
+                  <NavLink to={"/samurai-way-main/profile/" + u.id}>
                     <img src={u.photos.small ? u.photos.small : ava} alt="" />
                   </NavLink>
                 </div>

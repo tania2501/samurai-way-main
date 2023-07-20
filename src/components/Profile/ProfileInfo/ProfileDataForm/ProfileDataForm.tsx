@@ -20,7 +20,6 @@ export const ProfileDataForm = (props: { setEdit: () => void, updateProfileData:
     mode: "onChange", defaultValues: props.profile
   });
   const submitHandler: SubmitHandler<ProfileFormType> = (data) => {
-    console.log(data);
     props.updateProfileData(data)
     props.setEdit();
   };

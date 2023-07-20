@@ -13,7 +13,7 @@ const Navbar = () => {
     <nav className={a.navbar}>
       <div className={a.item}>
         <NavLink
-          to="/profile"
+          to="/samurai-way-main/profile"
           className={({ isActive }) => (isActive ? a.activeLink : undefined)}
         >
           <img src={home} alt="#" />
@@ -22,7 +22,7 @@ const Navbar = () => {
       </div>
       <div className={a.item}>
         <NavLink
-          to="/dialogs"
+          to="/samurai-way-main/dialogs"
           className={({ isActive }) => (isActive ? a.activeLink : undefined)}
         >
           <img src={message} alt="#" />
@@ -31,7 +31,7 @@ const Navbar = () => {
       </div>
       <div className={a.item}>
         <NavLink
-          to="/users"
+          to="/samurai-way-main/users"
           className={({ isActive }) => (isActive ? a.activeLink : undefined)}
         >
           <img src={friend} alt="#" />
@@ -40,7 +40,7 @@ const Navbar = () => {
       </div>
       <div className={a.item}>
         <NavLink
-          to="/news"
+          to="/samurai-way-main/news"
           className={({ isActive }) => (isActive ? a.activeLink : undefined)}
         >
           <img src={news} alt="#" />
@@ -49,7 +49,7 @@ const Navbar = () => {
       </div>
       <div className={a.item}>
         <NavLink
-          to="/music"
+          to="/samurai-way-main/music"
           className={({ isActive }) => (isActive ? a.activeLink : undefined)}
         >
           <img src={music} alt="#" />
@@ -58,7 +58,7 @@ const Navbar = () => {
       </div>
       <div className={a.item}>
         <NavLink
-          to="/settings"
+          to="/samurai-way-main/settings"
           className={({ isActive }) => (isActive ? a.activeLink : undefined)}
         >
           <img src={set} alt="#" />

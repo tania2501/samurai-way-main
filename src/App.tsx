@@ -46,15 +46,15 @@ class App extends React.Component<AppPropsType> {
         <div className="containerMobile">
           <div className="app-wrapper-content">
             <Routes>
-              <Route path="/" element={<ProfileContainer />} />
-              <Route path="/profile" element={<ProfileContainer />} />
-              <Route path="/profile/:userId" element={<ProfileContainer />} />
-              <Route path="/dialogs" element={<React.Suspense fallback={<Preloader isFetching={true}/>}><DialogsContainer /></React.Suspense>} />
-              <Route path="/users" element={<UsersContainer />} />
-              <Route path="/news" element={<News />} />
-              <Route path="/music" element={<Music />} />
-              <Route path="/settings" element={<Setting />} />
-              <Route path="/login" element={<Login />} />
+              <Route path="/samurai-way-main/" element={<ProfileContainer />} />
+              <Route path="/samurai-way-main/profile" element={<ProfileContainer />} />
+              <Route path="/samurai-way-main/profile/:userId" element={<ProfileContainer />} />
+              <Route path="/samurai-way-main/dialogs" element={<React.Suspense fallback={<Preloader isFetching={true}/>}><DialogsContainer /></React.Suspense>} />
+              <Route path="/samurai-way-main/users" element={<UsersContainer />} />
+              <Route path="/samurai-way-main/news" element={<News />} />
+              <Route path="/samurai-way-main/music" element={<Music />} />
+              <Route path="/samurai-way-main/settings" element={<Setting />} />
+              <Route path="/samurai-way-main/login" element={<Login />} />
             </Routes>
           </div>
         </div>
@@ -62,15 +62,15 @@ class App extends React.Component<AppPropsType> {
           <Navbar />
           <div className="app-wrapper-content">
             <Routes>
-              <Route path="/" element={<ProfileContainer />} />
-              <Route path="/profile" element={<ProfileContainer />} />
-              <Route path="/profile/:userId" element={<ProfileContainer />} />
-              <Route path="/dialogs" element={<React.Suspense fallback={<Preloader isFetching={true}/>}><DialogsContainer /></React.Suspense>} />
-              <Route path="/users" element={<UsersContainer />} />
-              <Route path="/news" element={<News />} />
-              <Route path="/music" element={<Music />} />
-              <Route path="/settings" element={<Setting />} />
-              <Route path="/login" element={<Login />} />
+              <Route path="/samurai-way-main" element={<ProfileContainer />} />
+              <Route path="/samurai-way-main/profile" element={<ProfileContainer />} />
+              <Route path="/samurai-way-main/profile/:userId" element={<ProfileContainer />} />
+              <Route path="/samurai-way-main/dialogs" element={<React.Suspense fallback={<Preloader isFetching={true}/>}><DialogsContainer /></React.Suspense>} />
+              <Route path="/samurai-way-main/users" element={<UsersContainer />} />
+              <Route path="/samurai-way-main/news" element={<News />} />
+              <Route path="/samurai-way-main/music" element={<Music />} />
+              <Route path="/samurai-way-main/settings" element={<Setting />} />
+              <Route path="/samurai-way-main/login" element={<Login />} />
             </Routes>
           </div>
         </div>

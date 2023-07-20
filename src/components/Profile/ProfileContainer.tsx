@@ -57,7 +57,7 @@ class ProfileAPI extends React.Component<ProfileAPItype> {
     let userId = Number(this.props.params.userId);
     if (!userId) {
       userId = this.props.id;
-      if(!userId) <Navigate to={'/login'}/>
+      if(!userId) <Navigate to={'/samurai-way-main/login'}/>
     }
     this.props.getProfile(userId);
     this.props.getStatus(userId);

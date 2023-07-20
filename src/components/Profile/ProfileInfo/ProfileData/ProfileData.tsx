@@ -29,7 +29,7 @@ export const ProfileData = (props: {
       <div className={s.social}>
         <a href={"https://" + props.profile.contacts.facebook}>
           {props.profile.contacts.facebook ? <img
-            src="https://www.clipartmax.com/png/small/13-139519_facebook-flat-flat-icon-social-icon-facebook-simgesi.png"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Facebook_F_icon.svg/640px-Facebook_F_icon.svg.png"
             alt="#"
           /> : null}
         </a>
@@ -41,7 +41,7 @@ export const ProfileData = (props: {
         </a>
         <a href={"https://" + (props.profile.contacts.instagram ? props.profile.contacts.instagram : 'instagram.com')}>
         {props.profile.contacts.instagram ? <img
-            src="https://www.clipartmax.com/png/small/4-41427_instagram-png-icon-instagram-logo-transparent.png"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/640px-Instagram_logo_2022.svg.png"
             alt="#"
           /> : null}
         </a>

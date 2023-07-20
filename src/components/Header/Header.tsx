@@ -19,7 +19,7 @@ export const Header = (props: HeaderType) => {
             <div className={s.foto}></div>
             <div className={s.item}>
               <NavLink
-                to="/profile"
+                to="/samurai-way-main/profile"
                 className={({ isActive }) => (isActive ? s.activeLink : "")}
                 onClick={() => setMenu(false)}
               >
@@ -28,7 +28,7 @@ export const Header = (props: HeaderType) => {
             </div>
             <div className={s.item}>
               <NavLink
-                to="/dialogs"
+                to="/samurai-way-main/dialogs"
                 className={({ isActive }) =>
                   isActive ? s.activeLink : undefined
                 }
@@ -39,7 +39,7 @@ export const Header = (props: HeaderType) => {
             </div>
             <div className={s.item}>
               <NavLink
-                to="/users"
+                to="/samurai-way-main/users"
                 className={({ isActive }) =>
                   isActive ? s.activeLink : undefined
                 }
@@ -50,7 +50,7 @@ export const Header = (props: HeaderType) => {
             </div>
             <div className={s.item}>
               <NavLink
-                to="/news"
+                to="/samurai-way-main/news"
                 className={({ isActive }) =>
                   isActive ? s.activeLink : undefined
                 }
@@ -61,7 +61,7 @@ export const Header = (props: HeaderType) => {
             </div>
             <div className={s.item}>
               <NavLink
-                to="/music"
+                to="/samurai-way-main/music"
                 className={({ isActive }) =>
                   isActive ? s.activeLink : undefined
                 }
@@ -72,7 +72,7 @@ export const Header = (props: HeaderType) => {
             </div>
             <div className={s.item}>
               <NavLink
-                to="/settings"
+                to="/samurai-way-main/settings"
                 className={({ isActive }) =>
                   isActive ? s.activeLink : undefined
                 }
@@ -102,7 +102,7 @@ export const Header = (props: HeaderType) => {
               <img src={logout} alt="#" onClick={props.logOutUser} />
             </div>
           ) : (
-            <NavLink to="/login">Login</NavLink>
+            <NavLink to="/samurai-way-main/login">Login</NavLink>
           )}
         </div>
       </div>
