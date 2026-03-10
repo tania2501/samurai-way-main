@@ -6,8 +6,13 @@ const instance = axios.create({
   withCredentials: true,
   baseURL: "https://social-network.samuraijs.com/api/1.0",
   headers: {
-    "API-KEY": "9ea0b65b-29dc-4d3d-81d5-a42faf1e493e",
+    "API-KEY": "a0e19f50-fa40-46e8-a5ca-d17c02388438",
   },
+});
+instance.interceptors.request.use(function (config) {
+  config.headers["Authorization"] = "Bearer " + localStorage.getItem("sn-token");
+
+  return config;
 });
 
 export const usersAPI = {

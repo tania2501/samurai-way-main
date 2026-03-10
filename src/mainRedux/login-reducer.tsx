@@ -8,14 +8,14 @@ const SET_AUTH_ERROR = 'SET_AUTH_ERROR';
 const SET_CAPTCHA = 'SET_CAPTCHA';
 const initialState = {} as AuthorizationType;
 
-export const loginReducer: Reducer<AuthorizationType, ActionsTypes> = ( state = { ...initialState },action ): AuthorizationType => {
+export const loginReducer: Reducer<AuthorizationType, ActionsTypes> = (state = { ...initialState }, action): AuthorizationType => {
   switch (action.type) {
     case SET_USER_DATA:
       return { ...state, ...action.data, isAuth: action.isAuth, id: action.id };
     case SET_AUTH_ERROR:
-      return {...state, error: action.error}
-    case SET_CAPTCHA: 
-      return {...state, captcha: action.captcha}
+      return { ...state, error: action.error }
+    case SET_CAPTCHA:
+      return { ...state, captcha: action.captcha }
     default:
       return state;
   }
@@ -32,7 +32,7 @@ export const setCaptcha = (captcha: string) => {
 };
 //thunks
 export const authUser = (): ThunkType => async (dispatch) => {
-  return authAPI.auth().then(res=> {
+  return authAPI.auth().then(res => {
     if (res.resultCode === 0) {
       dispatch(setAuthUserData(res.data, true, res.data.id));
     }
@@ -41,9 +41,12 @@ export const authUser = (): ThunkType => async (dispatch) => {
 export const loginUser = (loginData: LoginDataType): ThunkType => async (dispatch) => {
   const res = await authAPI.login(loginData);
   if (res.resultCode === 0) {
+    let { id, login, email, token } = res.data;
+    localStorage.setItem("sn-token", token);
+    dispatch(setAuthUserData(id, email, login));
     dispatch(authUser());
   } else {
-    if(res.resultCode === 10) {
+    if (res.resultCode === 10) {
       dispatch(getCaptchaUrl())
     }
     dispatch(setAuthUserError(res.messages[0]))
